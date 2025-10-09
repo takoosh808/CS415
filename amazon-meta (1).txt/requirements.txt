@@ -1,5 +1,5 @@
-# Amazon Metadata Neo4j Project Requirements
-neo4j==5.15.0
-pandas==2.1.4
-numpy==1.24.3
-python-dateutil==2.8.2
+# packages we need for this project (hopefully these versions work on your machine too)
+neo4j==5.15.0          # for connecting to neo4j obviously
+pandas==2.1.4          # data manipulation (lifesaver for cleaning the messy amazon data)
+numpy==1.24.3          # math stuff that pandas needs
+python-dateutil==2.8.2 # date parsing (amazon dates are weird format)

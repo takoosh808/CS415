@@ -1,18 +1,19 @@
 """
-Complete Amazon Metadata Processing and Neo4j Setup
-===================================================
+CS415 Milestone 2 - Run Everything Script
+=========================================
 
-This script orchestrates the complete data processing pipeline:
-1. Data preparation and transformation
-2. Neo4j database setup
-3. Data ingestion
-4. Validation and performance testing
+This runs our whole pipeline for the amazon data project:
+1. clean up the massive amazon file 
+2. set up neo4j with proper schema
+3. load all the data 
+4. run some test queries to prove it works
 
-Usage:
-    python run_complete_pipeline.py
+Just run: python run_complete_pipeline.py
 
-Requirements:
-    pip install neo4j pandas numpy
+Make sure you have: pip install neo4j pandas numpy
+(or just: pip install -r requirements.txt)
+
+Note: this takes a while so maybe grab some coffee or do other homework lol
 """
 
 import subprocess
@@ -22,12 +23,12 @@ import time
 from pathlib import Path
 import json
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# set up logging so we can see what's happening (and debug when stuff breaks)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def install_requirements():
-    """Install required Python packages"""
+    """tries to install the python packages we need (sometimes pip is finicky)"""
     logger.info("Installing required packages...")
     packages = ['neo4j', 'pandas', 'numpy']
     
@@ -39,23 +40,25 @@ def install_requirements():
             logger.error(f"Failed to install {package}: {e}")
 
 def check_neo4j_connection():
-    """Check if Neo4j is running and accessible"""
+    """see if neo4j is actually running (we always forget to start it)"""
     try:
         from neo4j import GraphDatabase
+        # default connection stuff (username: neo4j, password: Password)
         driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "Password"))
         with driver.session() as session:
-            session.run("RETURN 1")
+            session.run("RETURN 1")  # just test if it responds
         driver.close()
-        logger.info("Neo4j connection successful")
+        logger.info("✓ neo4j is running and we can connect!")
         return True
     except Exception as e:
-        logger.error(f"Neo4j connection failed: {e}")
-        logger.error("Please ensure Neo4j is running on localhost:7687 with username 'neo4j' and password 'Password'")
+        logger.error(f"✗ can't connect to neo4j: {e}")
+        logger.error("make sure neo4j desktop is running and the database is started")
+        logger.error("also check that username='neo4j' and password='Password'")
         return False
 
 def run_data_preparation():
-    """Execute data preparation script"""
-    logger.info("Running data preparation...")
+    """runs our data cleaning script (this takes a while...)"""
+    logger.info("starting data prep - this might take 5-10 minutes depending on your machine")
     
     try:
         from data_preparation import AmazonDataProcessor
@@ -64,17 +67,18 @@ def run_data_preparation():
         output_file = "processed_amazon_data.json"
         
         if not Path(input_file).exists():
-            logger.error(f"Input file {input_file} not found!")
+            logger.error(f"uhoh, can't find {input_file}! did you download it?")
             return False
         
-        # Process 50,000 products for milestone requirements (10-500MB)
+        # we're processing 50k products to meet the 10-500MB requirement
+        # (originally wanted to do more but my laptop kept crashing lol)
         processor = AmazonDataProcessor(input_file, output_file, max_products=50000)
         processor.process_data()
         
         return True
         
     except Exception as e:
-        logger.error(f"Data preparation failed: {e}")
+        logger.error(f"data prep exploded: {e}")
         return False
 
 def run_neo4j_ingestion():

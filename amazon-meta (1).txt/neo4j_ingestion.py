@@ -1,28 +1,25 @@
 """
-Neo4j Graph Database Schema Design for Amazon Product Data
-=========================================================
+Neo4j Setup Script for CS415 Amazon Project 
+==========================================
 
-This module defines the graph schema and provides ingestion functionality
-for Amazon product metadata into Neo4j database.
+this script creates the database structure and loads all our cleaned data into neo4j
 
-Graph Schema Design:
--------------------
-NODES:
-- Product: Core product information
-- Category: Product categories 
-- Customer: Individual customers who wrote reviews
+Our graph design (pretty cool actually):
+- Products: the main amazon items with titles, ratings, etc
+- Categories: like "Books > Fiction" but in graph form
+- Customers: people who wrote reviews
 
-RELATIONSHIPS:
-- (Product)-[:SIMILAR_TO]->(Product): Similar product recommendations
-- (Product)-[:BELONGS_TO]->(Category): Product categorization
-- (Customer)-[:REVIEWED]->(Product): Customer product reviews
+How they connect:
+- Products link to similar products (amazon's "also bought" recommendations)  
+- Products belong to categories (books, electronics, etc)
+- Customers reviewed products (with ratings and stuff)
 
-This schema is appropriate because:
-1. Graph structure naturally represents product similarities and recommendations
-2. Category hierarchies are well-suited for graph traversal
-3. Review relationships enable recommendation analysis
-4. Scales well with Neo4j's native graph operations
-5. Supports complex queries for product discovery and analysis
+why this works well:
+- graphs are perfect for "find similar products" type queries
+- category browsing is natural with graph traversal
+- recommendation algorithms love graph data
+- neo4j handles millions of relationships pretty fast
+- lets us do complex queries like "books similar to harry potter rated 4+ stars"
 """
 
 from neo4j import GraphDatabase

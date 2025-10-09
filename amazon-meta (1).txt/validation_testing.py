@@ -1,9 +1,9 @@
 """
-Comprehensive Validation and Performance Testing for Neo4j Amazon Data
-=====================================================================
+Test Script to Check if Everything Worked
+========================================
 
-This module provides detailed validation queries and performance benchmarks
-to demonstrate successful data ingestion and database performance.
+runs a bunch of queries to make sure our data loaded correctly 
+and measures how fast neo4j can answer them (hopefully fast enough for good grades)
 """
 
 from neo4j import GraphDatabase
@@ -12,17 +12,17 @@ import json
 import logging
 from typing import Dict, List, Tuple, Any
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging setup
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class Neo4jValidator:
-    """Validates Neo4j data ingestion and measures performance"""
+    """runs test queries and checks if our database actually works"""
     
     def __init__(self, uri: str = "bolt://localhost:7687", user: str = "neo4j", password: str = "Password"):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
-        self.validation_results = {}
-        self.performance_results = {}
+        self.validation_results = {}  # stores test results
+        self.performance_results = {}  # stores timing info
     
     def close(self):
         if self.driver:

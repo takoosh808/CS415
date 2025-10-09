@@ -1,9 +1,9 @@
 """
-Project Packaging Script for Milestone 2 Submission
-==================================================
+Zip Everything Up for Submission  
+===============================
 
-This script creates a ZIP file containing all source code and documentation
-for Milestone 2 submission.
+creates a zip file with all our code and docs for turning in
+(because prof wants everything in one zip file)
 """
 
 import zipfile
@@ -12,21 +12,21 @@ from pathlib import Path
 import datetime
 
 def create_submission_package():
-    """Create ZIP file with all project files"""
+    """makes a zip with all our project stuff"""
     
-    # Get current timestamp for unique filename
+    # add timestamp so we don't overwrite old submissions by accident  
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    zip_filename = f"Amazon_Neo4j_Milestone2_{timestamp}.zip"
+    zip_filename = f"CS415_Amazon_Project_{timestamp}.zip"
     
-    # Files to include in submission
+    # all the files prof wants to see
     files_to_include = [
-        "data_preparation.py",
-        "neo4j_ingestion.py", 
-        "validation_testing.py",
-        "run_complete_pipeline.py",
-        "requirements.txt",
-        "README.md",
-        "MILESTONE_2_REPORT.md"
+        "data_preparation.py",        # data cleaning script
+        "neo4j_ingestion.py",         # database setup 
+        "validation_testing.py",      # test queries
+        "run_complete_pipeline.py",   # main script that runs everything
+        "requirements.txt",           # python packages needed
+        "README.md",                  # setup instructions  
+        "MILESTONE_2_REPORT.md"       # our write-up
     ]
     
     # Optional files (include if they exist)

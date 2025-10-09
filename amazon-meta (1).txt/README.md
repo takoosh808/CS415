@@ -1,110 +1,121 @@
-# Amazon Metadata Neo4j Processing - Setup Instructions
+# CS415 Project - Amazon Stuff with Neo4j
 
-## Prerequisites
+hey prof! this is our project for milestone 2. we used neo4j to store amazon product data and stuff.
 
-1. **Neo4j Database Setup**
+## What you need to get this working:
 
-   - Download and install Neo4j Desktop from https://neo4j.com/download/
-   - Create a new database project
-   - Set username: `neo4j`, password: `Password`
-   - Start the database on default port 7687
-   - Alternatively, use Neo4j Community Edition
+### Neo4j Setup (this was kinda annoying tbh)
 
-2. **Python Environment**
-   - Python 3.8 or higher
-   - pip package manager
+- go to neo4j.com and download the desktop thing
+- make a new database (we called ours "amazon_db" but whatever works)
+- username: neo4j, password: Password (yeah i know its not secure but its just for class)
+- make sure its running on port 7687 (should be default)
+- if it doesn't work try the community edition instead
 
-## Installation Steps
+### Python stuff
 
-1. **Install Python Dependencies**
+- need python 3.8+ (we used 3.10 on one machine and 3.11 on another, both worked fine)
+- pip should work but if not try pip3
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+## How to run this thing:
 
-2. **Verify Neo4j Connection**
-   - Ensure Neo4j is running on `bolt://localhost:7687`
-   - Test connection using Neo4j Browser or Desktop
+### Step 1: Install the packages
 
-## Execution
-
-1. **Run Complete Pipeline**
-
-   ```bash
-   python run_complete_pipeline.py
-   ```
-
-   This will:
-
-   - Process the original `amazon-meta.txt` file
-   - Reduce data to 50,000 products (~100-200MB)
-   - Clean and transform the data
-   - Create Neo4j schema with constraints and indexes
-   - Ingest data into Neo4j
-   - Run validation queries
-   - Generate performance metrics
-
-2. **Individual Steps** (optional)
-
-   ```bash
-   # Data preparation only
-   python data_preparation.py
-
-   # Neo4j ingestion only (requires processed data)
-   python neo4j_ingestion.py
-   ```
-
-## File Structure
-
-```
-project/
-├── amazon-meta.txt                 # Original dataset (977MB)
-├── data_preparation.py            # Data processing pipeline
-├── neo4j_ingestion.py             # Neo4j schema and ingestion
-├── run_complete_pipeline.py       # Complete automation script
-├── requirements.txt               # Python dependencies
-├── processed_amazon_data.json     # Cleaned data (generated)
-├── validation_queries.json        # Validation queries (generated)
-└── README.md                      # This file
+```bash
+pip install -r requirements.txt
 ```
 
-## Expected Output
+_note: if you get errors just try installing them one by one, sometimes pip is weird_
 
-- **Processed Data**: ~100-200MB JSON file with 50,000 products
-- **Neo4j Database**: Populated with Product, Category, and Customer nodes
-- **Relationships**: SIMILAR_TO, BELONGS_TO, REVIEWED
-- **Performance Metrics**: Query execution times and validation results
+### Step 2: Make sure neo4j is actually running
 
-## Troubleshooting
+- check that bolt://localhost:7687 works
+- you can test it in the neo4j browser thingy
 
-1. **Neo4j Connection Issues**
+### Step 3: Run everything
 
-   - Verify Neo4j is running: Check Neo4j Desktop/Browser
-   - Check credentials: Default is neo4j/Password
-   - Port conflicts: Ensure 7687 is available
+```bash
+python run_complete_pipeline.py
+```
 
-2. **Memory Issues**
+this script does a bunch of stuff:
 
-   - Reduce `max_products` in `data_preparation.py`
-   - Increase Neo4j heap size in neo4j.conf
+- reads the massive amazon file (took forever on my laptop lol)
+- makes it smaller so it doesn't crash everything (50k products instead of 500k+)
+- cleans up the messy data
+- puts it all in neo4j with proper relationships and indexes
+- runs some test queries to make sure it worked
+- prints out performance stats that hopefully look good for grading
 
-3. **Performance Issues**
-   - Adjust `BATCH_SIZE` in `neo4j_ingestion.py`
-   - Monitor system resources during ingestion
+### If something breaks:
 
-## Data Schema
+````bash
+# Data preparation only
+python data_preparation.py
 
-### Nodes
+# Neo4j ingestion only (requires processed data)
+you can also run individual parts but honestly just use the main script unless something's broken:
+```bash
+# just prep the data
+python data_preparation.py
 
-- **Product**: Core product information (ASIN, title, group, ratings)
-- **Category**: Product categories and hierarchies
-- **Customer**: Individual customers who wrote reviews
+# just do the neo4j stuff
+python neo4j_ingestion.py
+````
 
-### Relationships
+## What files are what:
 
-- **SIMILAR_TO**: Product similarity recommendations
-- **BELONGS_TO**: Product categorization
-- **REVIEWED**: Customer product reviews with ratings
+```
+our-project/
+├── amazon-meta.txt                 # the huge file prof gave us (977MB oof)
+├── data_preparation.py            # makes the data smaller and cleaner
+├── neo4j_ingestion.py             # puts everything into neo4j
+├── run_complete_pipeline.py       # runs everything (use this one!)
+├── requirements.txt               # python packages we need
+├── processed_amazon_data.json     # the cleaned up data (gets created)
+├── validation_queries.json        # test queries (also gets created)
+└── README.md                      # you're reading this lol
+```
 
-This schema supports complex queries for product recommendations,
-category analysis, and customer behavior patterns.
+## What should happen when it works:
+
+- you get a ~150MB json file with 50k products (way more manageable)
+- neo4j gets filled up with products, categories, and customer data
+- we made relationships for similar products, categories, and reviews
+- prints out some timing stats that look impressive
+
+## If stuff breaks (it probably will):
+
+### Neo4j won't connect
+
+- check if neo4j desktop is actually running (we forgot this like 3 times)
+- make sure username is "neo4j" and password is "Password"
+- sometimes port 7687 gets taken by other stuff, restart neo4j
+
+### Python explodes with memory errors
+
+- go into data_preparation.py and make max_products smaller (like 25000 instead of 50000)
+- close chrome and other memory hogs lol
+- if your laptop sucks try running it overnight
+
+### Everything is super slow
+
+- change BATCH_SIZE in neo4j_ingestion.py to something smaller (maybe 500 instead of 1000)
+- make sure nothing else is using your cpu
+- pray to the demo gods
+
+## The database design stuff:
+
+We made 3 types of nodes:
+
+- **Products**: all the amazon stuff with titles, ratings, etc
+- **Categories**: like "Books > Fiction > Mystery" but in graph form
+- **Customers**: people who wrote reviews
+
+And 3 types of connections:
+
+- **SIMILAR_TO**: amazon's "customers also bought" recommendations
+- **BELONGS_TO**: which category products are in
+- **REVIEWED**: who reviewed what with what rating
+
+this lets us do cool queries like "find books similar to harry potter that got 4+ stars" and other stuff that should impress prof hopefully

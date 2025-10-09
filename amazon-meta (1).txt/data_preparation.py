@@ -1,14 +1,17 @@
 """
-Amazon Metadata Data Preparation Pipeline for Neo4j
-====================================================
+Data Cleaning Script for CS415 Amazon Project
+=============================================
 
-This module handles data reduction, cleansing, and transformation
-of Amazon product metadata for ingestion into Neo4j graph database.
+this script takes the huge amazon file and makes it smaller + cleaner
+so we can actually use it without our computers dying
 
-Data Structure Analysis:
-- Original file: ~977MB, 14.4M lines, 548,552 products
-- Each product has: ID, ASIN, title, group, salesrank, similar products, categories, reviews
-- Target: Reduce to 10-500MB for milestone processing
+what it does:
+- original file is like 977MB with 548k products (way too big)
+- we take just 50k products to get ~150MB (meets prof's 10-500MB requirement)  
+- cleans up weird formatting and missing data
+- converts everything to nice json for neo4j
+
+note: this takes forever so be patient... maybe do other homework while it runs
 """
 
 import re
@@ -19,13 +22,13 @@ from dataclasses import dataclass
 from pathlib import Path
 import time
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging setup so we know what's happening
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 @dataclass
 class Product:
-    """Data class representing a cleaned Amazon product"""
+    """holds info for one amazon product (cleaner than using dicts everywhere)"""
     id: int
     asin: str
     title: Optional[str] = None
