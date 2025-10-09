@@ -1,4 +1,4 @@
-# packages we need for this project (hopefully these versions work on your machine too)
+# packages we need for this project 
 neo4j==5.15.0          # for connecting to neo4j obviously
 pandas==2.1.4          # data manipulation (lifesaver for cleaning the messy amazon data)
 numpy==1.24.3          # math stuff that pandas needs
