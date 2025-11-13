@@ -1,0 +1,30 @@
+. Project: Amazon co-purchasing analysis
+Related Industry: online commercial/Business
+Data: http://snap.stanford.edu/data/amazon-meta.html
+The data was collected by crawling Amazon website and contains
+product metadata and review information about 548,552 different
+products (Books, music CDs, DVDs and VHS video tapes).
+Suggested Problem: Implement a co-purchasing data analytics engine
+using NoSQL database, Hadoop MapReduce and/or Apache Spark
+MLlib. The analyzer has the following functions:
+1. Answer complex query. We define a query Q of the form ‘SELECT *
+FROM U WHERE Condition’. The CONDITION is of the following
+forms:
+- Searchable attributes: value constraints over well-defined attributes
+in node/edge schema
+- Non-searchable attributes: attributes that cannot be queried directly
+over existing attributes: the number of reviews of a product, the
+number of customers co- purchasing same product of a user.
+- Queries with enriched operators: >, >=, =, <, <=; e.g., Select movie
+with average rating >=4.5
+Given a query Q and Amazon dataset, and a number k, find k entities
+that satisfy Q with minimized evaluation cost.
+Note: While the query Q is SQL-like, its implementation should be non-
+SQL based.
+2. Find potential customers that satisfies co-purchasing pattern:
+- Divide the co-purchasing data into two data set, one we call
+“training” dataset, and the other “testing” dataset. Verify several
+frequent co-purchasing patterns in the training dataset. Report the
+frequency in the testing dataset. For those frequent patterns in both
+dataset, return the customers captured by the patterns.
+- What seems to be the most significant co-purchasing pattern?

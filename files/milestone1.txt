@@ -1,0 +1,58 @@
+Project Statement for Milestone 1
+You team name
+(Team members’ names)
+Overview:
+At the end of Milestone-1 of the project, teams should have defined the project scope,
+categorized its dataset, and chosen an appropriate data model, and researched big data tools.
+Teams should have met a few times to develop a common understanding of the problem
+statement and project goals. Teams should have downloaded the data, identified its
+properties/attributes, and chosen an appropriate data model for the project. Teams should also
+have researched on the available tools (NoSQL database, Hadoop/Spark, etc.) for future steps.
+Teams are not required to setup a NoSQL database or Hadoop/Spark data processing frameworks
+during Milestone-1. All team members are expected to contribute significantly to the project
+milestone tasks.
+Note: Since some datasets are significantly larger than others, teams can choose to perform data
+preparation on a reduced dataset (>10 MB and <500 MB) for Milestone 1. However, they would
+still need to implement the final solution on a large dataset (>1 GB and <20 GB).
+Project Report Topics:
+The report should cover the following subtopics and answer the questions listed:
+1. Problem Statement and Project Goals:
+a. Give a formal description of the project. Include a description of the dataset and its
+links.
+b. Why is the problem you want to address important? What’s its application?
+c. Specify the goal you want to achieve (an end-to-end application with a graphical
+user interface, and/or a research-based evaluation of existing and new algorithms).
+2. Team Description:
+a. Who are the team members? What knowledge and skills do the team have from
+previous courses, projects, or internships?
+b. What will be each team member’s roles and responsibilities in the current project?
+3. Dataset Type and Data Model:
+a. A dataset can be described with more than one data model. Evaluate the dataset
+against each of the following data models, reporting its statistics:
+i. Key-Value: Can the data be represented with a key-value data model? If so,
+how many key-value pairs represent the dataset? How many unique keys?
+What are the data types for keys and values? Are these basic data types or
+data structures?
+ii. Graph: Can the data be represented with a graph data model? If so, how
+many nodes and edges represent the dataset? How many attributes are there
+for the nodes/edges? Is it labelled? Directed?
+iii. Document: Can the data be represented with a document data model? If so,
+how many documents represent your dataset? How many elements / sub-
+elements does each document has? What are the attributes?
+iv.Other: Can the data be represented by any other non-relational data model?
+If so, describe the data model and the applicable statistics on your dataset.
+b. Describe the data model your team has chosen to represent the dataset? Justify why
+the data model is an appropriate one for the dataset. Note: You should be using a
+non-relational data model for this project.
+Note: I recommend that each team member work on this task individually to develop an
+understanding of the dataset and data model options. The team can then compile a single
+response for the milestone document.
+4. Tools:
+a. What database tools do you plan to use?
+b. What data processing tools do you plan to use?
+c. What cloud resources, if any, do you plan to use?
+Peer Evaluation:
+Each team member should complete the CATME Peer Evaluation survey.
+Grading:
+• 25 pts: The team has completed all required tasks for the project milestone. The team has
+provided all relevant information, including links, in the project milestone report.
