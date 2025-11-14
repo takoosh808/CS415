@@ -1,0 +1,237 @@
+Milestone 3 Report
+Team Name: Team Baddie
+Team Members: Brian Leung, Cayden Calo, Jeremiah Carlo Miguel, Travis Takushi
+
+
+1. DATA FILES
+=============================================================================
+
+a. In addition to the NoSQL database, are you using any distributed data files?
+
+No, we are not using distributed data files (Parquet, HDFS) beyond the Neo4j 
+database. All data is stored in Neo4j graph database.
+
+Data transformation steps:
+1. Read amazon-meta.txt file (932 MB, 548,552 products)
+2. Parse product attributes: id, ASIN, title, group, salesrank, avg_rating, total_reviews
+3. Load into Neo4j using UNWIND bulk insert (100 products per batch)
+4. Create indexes on ASIN and product ID
+
+b. Sample data:
+
+Product sample from full dataset (548,552 products):
+- Harry Potter and the Sorcerer's Stone (043936213X): Rating 5.0, 5,039 reviews
+- Josh Groban (B00005RGNI): Rating 5.0, 990 reviews, Music category
+- Looking For - Best of David Hasselhoff (B0000070S1): Rating 5.0, 1,084 reviews
+
+
+2. ALGORITHM DESCRIPTION
+=============================================================================
+
+ALGORITHM 1: COMPLEX QUERY ALGORITHM
+
+a. Formal description:
+Input:
+  - Query conditions: min_rating, max_rating, min_reviews, group, max_salesrank
+  - Number of results k
+  
+Output:
+  - List of k products matching conditions, sorted by rating and review count
+
+Computing operations:
+  1. Build Cypher WHERE clause from query conditions
+  2. Execute parameterized query in Neo4j
+  3. Filter products by rating, reviews, category, sales rank
+  4. Sort by avg_rating DESC, total_reviews DESC
+  5. Return top k results
+
+b. Pseudo-code:
+
+function execute_query(conditions, k):
+    where_clauses = []
+    params = {}
+    
+    if 'min_rating' in conditions:
+        where_clauses.append("p.avg_rating >= $min_rating")
+        params['min_rating'] = conditions.min_rating
+    
+    if 'group' in conditions:
+        where_clauses.append("p.group = $group")
+        params['group'] = conditions.group
+    
+    if 'max_salesrank' in conditions:
+        where_clauses.append("p.salesrank <= $max_salesrank")
+        params['max_salesrank'] = conditions.max_salesrank
+    
+    query = "MATCH (p:Product) WHERE " + join(where_clauses, " AND ") +
+            "RETURN p ORDER BY p.avg_rating DESC, p.total_reviews DESC LIMIT $k"
+    
+    return neo4j.execute(query, params)
+
+c. Optimization techniques:
+
+- Database-level filtering: All filters applied in Neo4j before data transfer
+- Parameterized queries: Neo4j caches execution plans
+- Index utilization: Indexes on ASIN and product ID
+- Early limiting: LIMIT clause stops after finding k results
+
+
+ALGORITHM 2: CO-PURCHASING PATTERN MINING
+
+a. Formal description:
+
+Input:
+  - Product dataset with review counts
+  - Minimum support threshold (min_support)
+  - Maximum items to analyze (max_items)
+  
+Output:
+  - Frequent items (products with support >= min_support)
+
+Computing operations:
+  1. Query products with total_reviews >= min_support
+  2. Sort by review count descending
+  3. Select top max_items products
+  4. Return frequent items with support values
+
+b. Pseudo-code:
+
+function mine_frequent_patterns(min_support, max_items):
+    query = "MATCH (p:Product) " +
+            "WHERE p.total_reviews >= $min_support " +
+            "RETURN p.id, p.asin, p.title, p.total_reviews as support " +
+            "ORDER BY p.total_reviews DESC " +
+            "LIMIT $max_items"
+    
+    frequent_items = neo4j.execute(query, {
+        'min_support': min_support,
+        'max_items': max_items
+    })
+    
+    return frequent_items
+
+c. Optimization techniques:
+
+- Top-k filtering: Reduces candidate space from 548K to top 100 products
+- Database aggregation: Count operations performed in Neo4j
+- Apriori principle: Only frequent items considered for pattern mining
+- Compatible with Spark MLlib FPGrowth for distributed processing
+
+
+3. ALGORITHM RESULTS
+=============================================================================
+
+Dataset: 548,552 products from amazon-meta.txt (932 MB)
+
+a. Algorithm results:
+
+ALGORITHM 1 - Query Results:
+
+Query 1: High-rated products (Rating >= 4.5, Reviews >= 100)
+Top 5 results:
+1. Harry Potter and the Sorcerer's Stone (Book 1) (043936213X) - Rating: 5.0, Reviews: 5,039
+2. Harry Potter and the Sorcerer's Stone (Book 1 Audio CD) (0807281956) - Rating: 5.0, Reviews: 5,039
+3. Harry Potter and the Sorcerer's Stone (Book 1) (0590353403) - Rating: 5.0, Reviews: 5,039
+4. Harry Potter and the Sorcerer's Stone (Large Print) (0786222727) - Rating: 5.0, Reviews: 5,039
+5. Harry Potter and the Sorcerer's Stone (Audio CD) (0807286001) - Rating: 5.0, Reviews: 5,039
+
+Query 2: Books (Group = Book, Rating >= 4.0, Sales Rank <= 50,000)
+Top 3 results:
+1. Harry Potter and the Sorcerer's Stone (0590353403) - Rating: 5.0, Sales Rank: 170
+2. Harry Potter and the Sorcerer's Stone (Audio CD) (0807281956) - Rating: 5.0, Sales Rank: 1,533
+3. Harry Potter and the Sorcerer's Stone (Audio) (0807281751) - Rating: 5.0, Sales Rank: 6,496
+
+Query 3: Music products (Group = Music, Rating >= 4.0, Reviews >= 50)
+Top 3 results:
+1. Looking For - Best of David Hasselhoff (B0000070S1) - Rating: 5.0, Reviews: 1,084
+2. Josh Groban (B00005RGNI) - Rating: 5.0, Reviews: 990
+3. Now or Never (B00006ISA3) - Rating: 5.0, Reviews: 978
+
+ALGORITHM 2 - Pattern Mining Results:
+
+Configuration: min_support = 100, max_items = 100
+
+Top 10 frequent items:
+1. Harry Potter and the Order of the Phoenix (Deluxe Ed) (0439567629) - Support: 5,545
+2. Harry Potter and the Order of the Phoenix (Book 5) (043935806X) - Support: 5,545
+3. Harry Potter and the Order of the Phoenix (Audio) (0807220280) - Support: 5,539
+4. Harry Potter and the Order of the Phoenix (Audio CD) (0807220299) - Support: 5,539
+5. Harry Potter and the Sorcerer's Stone (0590353403) - Support: 5,039
+6. Harry Potter and the Sorcerer's Stone (Large Print) (0786222727) - Support: 5,039
+7. Harry Potter and the Sorcerer's Stone (Audio) (0807281751) - Support: 5,039
+8. Harry Potter and the Sorcerer's Stone (Audio CD) (0807281956) - Support: 5,039
+9. Harry Potter and the Sorcerer's Stone (043936213X) - Support: 5,039
+10. Harry Potter and the Sorcerer's Stone (Audio CD) (0807286001) - Support: 5,039
+
+b. Performance metrics:
+
+ALGORITHM 1 (Query Algorithm):
+- Query 1 execution time: 3.610 seconds
+- Query 2 execution time: 0.922 seconds
+- Query 3 execution time: 0.595 seconds
+- Average query time: 1.4 seconds on 548,552 products
+
+ALGORITHM 2 (Pattern Mining):
+- Execution time: 3.549 seconds
+- Frequent items identified: 100 products
+- Dataset analyzed: 548,552 products
+
+Data loading performance:
+- Load time: 2.8 minutes for 548,552 products
+- Throughput: 3,221 products/second
+
+c. Result presentation plan:
+
+Query Algorithm:
+- Run queries on-demand when user submits search criteria
+- Display results in web interface ranked by relevance
+- Response time: < 2 seconds for interactive queries
+- Provide filtering options (rating, category, sales rank)
+
+Pattern Mining:
+- Execute pattern mining offline (daily/weekly batch jobs)
+- Store discovered patterns in database
+- Present recommendations on-demand ("Customers also viewed...")
+- Update patterns periodically as new data arrives
+
+
+4. ALGORITHM SCALABILITY
+=============================================================================
+
+Yes, both algorithms are implemented with scalability in mind.
+
+ALGORITHM 1 - Query Algorithm Scalability:
+
+How it scales:
+- Database-native processing: All operations in Neo4j, no memory bottlenecks
+- Horizontal scaling: Neo4j supports sharding across multiple servers
+- Spark compatibility: Query logic translates to Spark DataFrame operations
+  (filter, sort, limit operations)
+- Index optimization: Query performance scales logarithmically with indexes
+
+Distributed environment:
+- Products can be partitioned by category or ID range
+- Parallel query execution across partitions
+- Results merged at coordinator node
+- Expected performance: 2-5 seconds on 5M products, 3-8 seconds on 50M products
+
+ALGORITHM 2 - Pattern Mining Scalability:
+
+How it scales:
+- Top-k filtering: Reduces search space (548K → top 100 products)
+- Database aggregation: Counting operations in Neo4j layer
+- Spark MLlib FPGrowth: Algorithm designed for distributed FP-tree mining
+- Incremental updates: Process only new data, merge with existing patterns
+
+Distributed environment:
+- Transaction data distributed across Spark worker nodes
+- FP-tree construction parallelized
+- Pattern mining on distributed conditional pattern bases
+- Expected performance: 15-20 minutes on 5M products with 50M reviews,
+  1-2 hours on 50M products with 500M reviews using Spark cluster
+
+
+5. SOURCE CODE
+=============================================================================
+
+see attached ZIP file.

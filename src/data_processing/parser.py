@@ -8,7 +8,7 @@ class AmazonDataParser:
         # Open file and read all products
         print(f"Reading file: {file_path}")
         
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
             current_product = {}
             current_reviews = []
             
