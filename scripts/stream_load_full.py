@@ -8,25 +8,37 @@ from src.data_processing.parser import parse_amazon_data
 
 def clear_database(driver, database):
     with driver.session(database=database) as session:
-        session.run("MATCH (n) DETACH DELETE n")
+        count = session.run("MATCH (n) RETURN count(n) as cnt LIMIT 1").single()['cnt']
+        
+    if count == 0:
+        return
+    
+    while True:
+        with driver.session(database=database) as session:
+            result = session.run("""
+                MATCH (n)
+                WITH n LIMIT 5000
+                DETACH DELETE n
+                RETURN count(n) as deleted
+            """)
+            deleted = result.single()['deleted']
+            if deleted == 0:
+                break
 
 
-def stream_load_products(driver, file_path, database, batch_size=5000):
+def stream_load_products(driver, file_path, database, batch_size=1000):
     products = parse_amazon_data(file_path)
     batch = []
-    total_loaded = 0
     
     for product in products:
         batch.append(product)
         
         if len(batch) >= batch_size:
             load_batch(driver, batch, database)
-            total_loaded += len(batch)
             batch = []
     
     if batch:
         load_batch(driver, batch, database)
-        total_loaded += len(batch)
 
 
 def load_batch(driver, batch, database):
@@ -37,11 +49,11 @@ def load_batch(driver, batch, database):
     
     for product in batch:
         product_data.append({
-            'id': product['id'],
-            'asin': product['asin'],
-            'title': product['title'],
-            'group': product['group'],
-            'salesrank': product['salesrank'],
+            'id': product.get('id', 0),
+            'asin': product.get('asin', ''),
+            'title': product.get('title', 'Unknown'),
+            'group': product.get('group', 'Unknown'),
+            'salesrank': product.get('salesrank', 0),
             'avg_rating': product.get('avg_rating', 0.0),
             'total_reviews': product.get('total_reviews', 0)
         })
@@ -98,23 +110,22 @@ def load_batch(driver, batch, database):
             """, categories=category_data)
         
         if review_data:
+            # Simplified review loading - just customer and REVIEWED relationship
             session.run("""
                 UNWIND $reviews as review
                 MATCH (p:Product {asin: review.asin})
                 MERGE (c:Customer {id: review.customer_id})
-                CREATE (r:Review {
-                    date: review.date,
-                    rating: review.rating,
-                    votes: review.votes,
-                    helpful: review.helpful
-                })
-                CREATE (c)-[:WROTE]->(r)
-                CREATE (r)-[:REVIEWS]->(p)
-                CREATE (c)-[:REVIEWED {rating: review.rating, date: review.date}]->(p)
+                MERGE (c)-[:REVIEWED {rating: review.rating, date: review.date}]->(p)
             """, reviews=review_data)
 
 
 def main():
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Load Amazon data into Neo4j')
+    parser.add_argument('--file', default='amazon-meta.txt', help='Input file path')
+    args = parser.parse_args()
+    
     uri = "bolt://localhost:7687"
     username = "neo4j"
     password = "Password"
@@ -122,18 +133,8 @@ def main():
     
     driver = GraphDatabase.driver(uri, auth=(username, password))
     
-    file_path = "amazon-meta.txt"
-    
     clear_database(driver, database)
-    stream_load_products(driver, file_path, database)
-    
-    with driver.session(database=database) as session:
-        product_count = session.run("MATCH (p:Product) RETURN count(p) as cnt").single()['cnt']
-        review_count = session.run("MATCH (r:Review) RETURN count(r) as cnt").single()['cnt']
-        customer_count = session.run("MATCH (c:Customer) RETURN count(c) as cnt").single()['cnt']
-        category_count = session.run("MATCH (c:Category) RETURN count(c) as cnt").single()['cnt']
-        similar_count = session.run("MATCH ()-[r:SIMILAR_TO]->() RETURN count(r) as cnt").single()['cnt']
-    
+    stream_load_products(driver, args.file, database)
     driver.close()
 
 

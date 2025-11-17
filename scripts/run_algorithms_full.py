@@ -2,7 +2,7 @@ from neo4j import GraphDatabase
 import time
 
 
-class OptimizedQueryAlgorithm:
+class QueryAlgorithm:
     
     def __init__(self):
         self.driver = GraphDatabase.driver("bolt://localhost:7687", 
@@ -81,7 +81,7 @@ class OptimizedQueryAlgorithm:
             self.driver.close()
 
 
-class OptimizedPatternMiningAlgorithm:
+class PatternMiningAlgorithm:
     
     def __init__(self):
         self.driver = GraphDatabase.driver("bolt://localhost:7687", 
@@ -173,49 +173,43 @@ class OptimizedPatternMiningAlgorithm:
 
 
 def main():
-    driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "Password"))
-    with driver.session(database="amazon-analysis") as session:
-        product_count = session.run("MATCH (p:Product) RETURN count(p) as cnt").single()['cnt']
-        review_count = session.run("MATCH (r:Review) RETURN count(r) as cnt").single()['cnt']
-        customer_count = session.run("MATCH (c:Customer) RETURN count(c) as cnt").single()['cnt']
-    driver.close()
+    query_algo = QueryAlgorithm()
     
-    query_algo = OptimizedQueryAlgorithm()
+    print("\n=== Query Algorithm Results ===\n")
     
     results1, time1 = query_algo.execute_query({
         'min_rating': 4.5,
         'min_reviews': 100
     }, k=10)
+    print(f"Query 1 (High-rated popular products): {len(results1)} results in {time1:.3f}s")
     
     results2, time2 = query_algo.execute_query({
         'group': 'Book',
         'min_rating': 4.0,
         'max_salesrank': 50000
     }, k=10)
+    print(f"Query 2 (Book recommendations): {len(results2)} results in {time2:.3f}s")
     
     results3, time3 = query_algo.execute_query({
         'group': 'Music',
         'min_rating': 4.0,
         'min_reviews': 50
     }, k=10)
+    print(f"Query 3 (Music recommendations): {len(results3)} results in {time3:.3f}s")
     
     results4, time4 = query_algo.find_products_by_active_customers(min_customer_reviews=5, k=10)
+    print(f"Query 4 (Active customer products): {len(results4)} results in {time4:.3f}s")
     query_algo.close()
     
-    pattern_algo = OptimizedPatternMiningAlgorithm()
-    results = pattern_algo.mine_frequent_patterns(min_support=100, max_items=100)
-    pattern_algo.close()
+    print("\n=== Pattern Mining Results ===\n")
     
-    return {
-        'product_count': product_count,
-        'review_count': review_count,
-        'customer_count': customer_count,
-        'query_times': [time1, time2, time3, time4],
-        'pattern_mining_time': results['elapsed_time'],
-        'query_results': [results1, results2, results3, results4],
-        'pattern_results': results
-    }
+    pattern_algo = PatternMiningAlgorithm()
+    results = pattern_algo.mine_frequent_patterns(min_support=100, max_items=100)
+    print(f"Found {results['patterns_found']} patterns in {results['elapsed_time']:.3f}s")
+    print(f"Top pattern: {results['top_patterns'][0]['pattern']} (support: {results['top_patterns'][0]['support']})")
+    pattern_algo.close()
 
 
 if __name__ == "__main__":
     main()
+

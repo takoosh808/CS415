@@ -1,4 +1,118 @@
-# This reads the amazon-meta.txt file and gets the data out
+def parse_amazon_data(file_path):
+    with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
+        current_product = {}
+        current_reviews = []
+        in_categories = False
+        categories_remaining = 0
+        current_categories = []
+        
+        for line in file:
+            line_stripped = line.strip()
+            
+            if not line_stripped:
+                if current_product:
+                    current_product['reviews'] = current_reviews
+                    yield current_product
+                    current_product = {}
+                    current_reviews = []
+                    in_categories = False
+                    categories_remaining = 0
+                    current_categories = []
+                continue
+            
+            if in_categories:
+                if categories_remaining > 0:
+                    if '|' in line_stripped:
+                        cat_parts = line_stripped.split('|')[1:]
+                        category_path = []
+                        for cat in cat_parts:
+                            if '[' in cat and ']' in cat:
+                                cat_name = cat.split('[')[0].strip()
+                                category_path.append(cat_name)
+                        if category_path:
+                            current_categories.append(category_path)
+                    categories_remaining -= 1
+                    if categories_remaining == 0:
+                        in_categories = False
+                        current_product['categories'] = current_categories
+                        current_categories = []
+                continue
+            
+            if line_stripped.startswith('Id:'):
+                current_product['id'] = int(line_stripped.split(':')[1].strip())
+                
+            elif line_stripped.startswith('ASIN:'):
+                current_product['asin'] = line_stripped.split(':')[1].strip()
+                
+            elif line_stripped.startswith('title:'):
+                current_product['title'] = line_stripped.split(':', 1)[1].strip()
+                
+            elif line_stripped.startswith('group:'):
+                current_product['group'] = line_stripped.split(':')[1].strip()
+                
+            elif line_stripped.startswith('salesrank:'):
+                try:
+                    current_product['salesrank'] = int(line_stripped.split(':')[1].strip())
+                except:
+                    current_product['salesrank'] = 0
+                    
+            elif line_stripped.startswith('similar:'):
+                parts = line_stripped.split()
+                if len(parts) > 2:
+                    current_product['similar'] = parts[2:]
+                else:
+                    current_product['similar'] = []
+                    
+            elif line_stripped.startswith('categories:'):
+                try:
+                    count = int(line_stripped.split(':')[1].strip())
+                    if count > 0:
+                        in_categories = True
+                        categories_remaining = count
+                    else:
+                        current_product['categories'] = []
+                except:
+                    current_product['categories'] = []
+                
+            elif line_stripped.startswith('reviews:'):
+                parts = line_stripped.split()
+                if len(parts) >= 8:
+                    current_product['total_reviews'] = int(parts[2])
+                    current_product['downloaded_reviews'] = int(parts[4])
+                    current_product['avg_rating'] = float(parts[7])
+                else:
+                    current_product['total_reviews'] = 0
+                    current_product['downloaded_reviews'] = 0
+                    current_product['avg_rating'] = 0.0
+                    
+            elif 'cutomer:' in line_stripped and 'rating:' in line_stripped:
+                try:
+                    parts = line_stripped.split()
+                    date = parts[0]
+                    customer_idx = parts.index('cutomer:')
+                    customer_id = parts[customer_idx + 1]
+                    rating_idx = parts.index('rating:')
+                    rating = int(parts[rating_idx + 1])
+                    votes_idx = parts.index('votes:')
+                    votes = int(parts[votes_idx + 1])
+                    helpful_idx = parts.index('helpful:')
+                    helpful = int(parts[helpful_idx + 1])
+                    
+                    current_reviews.append({
+                        'date': date,
+                        'customer': customer_id,
+                        'rating': rating,
+                        'votes': votes,
+                        'helpful': helpful
+                    })
+                except:
+                    pass
+        
+        # Yield last product if exists
+        if current_product:
+            current_product['reviews'] = current_reviews
+            yield current_product
+
 
 class AmazonDataParser:
     def __init__(self):
