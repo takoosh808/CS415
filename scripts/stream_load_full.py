@@ -29,16 +29,23 @@ def clear_database(driver, database):
 def stream_load_products(driver, file_path, database, batch_size=1000):
     products = parse_amazon_data(file_path)
     batch = []
+    total_loaded = 0
     
     for product in products:
         batch.append(product)
         
         if len(batch) >= batch_size:
             load_batch(driver, batch, database)
+            total_loaded += len(batch)
+            print(f"Loaded {total_loaded:,} products...")
             batch = []
     
     if batch:
         load_batch(driver, batch, database)
+        total_loaded += len(batch)
+        print(f"Loaded {total_loaded:,} products...")
+    
+    print(f"\nTotal products loaded: {total_loaded:,}")
 
 
 def load_batch(driver, batch, database):
@@ -82,41 +89,64 @@ def load_batch(driver, batch, database):
             })
     
     with driver.session(database=database) as session:
-        session.run("""
-            UNWIND $products as product
-            MERGE (p:Product {asin: product.asin})
-            SET p.id = product.id,
-                p.title = product.title,
-                p.group = product.group,
-                p.salesrank = product.salesrank,
-                p.avg_rating = product.avg_rating,
-                p.total_reviews = product.total_reviews
-        """, products=product_data)
+        with session.begin_transaction() as tx:
+            tx.run("""
+                UNWIND $products as product
+                MERGE (p:Product {asin: product.asin})
+                SET p.id = product.id,
+                    p.title = product.title,
+                    p.group = product.group,
+                    p.salesrank = product.salesrank,
+                    p.avg_rating = product.avg_rating,
+                    p.total_reviews = product.total_reviews
+            """, products=product_data)
+            tx.commit()
+        print(f"  Products: {len(product_data)}")
         
         if similar_data:
-            session.run("""
-                UNWIND $similar as sim
-                MATCH (p1:Product {asin: sim.asin})
-                MERGE (p2:Product {asin: sim.similar_asin})
-                MERGE (p1)-[:SIMILAR_TO]->(p2)
-            """, similar=similar_data)
+            total_similar = 0
+            for i in range(0, len(similar_data), 50):
+                chunk = similar_data[i:i+50]
+                with session.begin_transaction() as tx:
+                    tx.run("""
+                        UNWIND $similar as sim
+                        MATCH (p1:Product {asin: sim.asin})
+                        MERGE (p2:Product {asin: sim.similar_asin})
+                        MERGE (p1)-[:SIMILAR_TO]->(p2)
+                    """, similar=chunk)
+                    tx.commit()
+                total_similar += len(chunk)
+                print(f"  Similarities: {total_similar}/{len(similar_data)}")
         
         if category_data:
-            session.run("""
-                UNWIND $categories as cat
-                MATCH (p:Product {asin: cat.asin})
-                MERGE (c:Category {name: cat.category})
-                MERGE (p)-[:BELONGS_TO]->(c)
-            """, categories=category_data)
+            total_categories = 0
+            for i in range(0, len(category_data), 50):
+                chunk = category_data[i:i+50]
+                with session.begin_transaction() as tx:
+                    tx.run("""
+                        UNWIND $categories as cat
+                        MATCH (p:Product {asin: cat.asin})
+                        MERGE (c:Category {name: cat.category})
+                        MERGE (p)-[:BELONGS_TO]->(c)
+                    """, categories=chunk)
+                    tx.commit()
+                total_categories += len(chunk)
+                print(f"  Categories: {total_categories}/{len(category_data)}")
         
         if review_data:
-            # Simplified review loading - just customer and REVIEWED relationship
-            session.run("""
-                UNWIND $reviews as review
-                MATCH (p:Product {asin: review.asin})
-                MERGE (c:Customer {id: review.customer_id})
-                MERGE (c)-[:REVIEWED {rating: review.rating, date: review.date}]->(p)
-            """, reviews=review_data)
+            total_reviews = 0
+            for i in range(0, len(review_data), 50):
+                chunk = review_data[i:i+50]
+                with session.begin_transaction() as tx:
+                    tx.run("""
+                        UNWIND $reviews as review
+                        MATCH (p:Product {asin: review.asin})
+                        MERGE (c:Customer {id: review.customer_id})
+                        MERGE (c)-[:REVIEWED {rating: review.rating, date: review.date}]->(p)
+                    """, reviews=chunk)
+                    tx.commit()
+                total_reviews += len(chunk)
+                print(f"  Reviews: {total_reviews}/{len(review_data)}")
 
 
 def main():
@@ -133,9 +163,11 @@ def main():
     
     driver = GraphDatabase.driver(uri, auth=(username, password))
     
-    clear_database(driver, database)
+    print("Starting data load...")
+    # Skipping clear_database - too slow on large datasets
     stream_load_products(driver, args.file, database)
     driver.close()
+    print("Data load complete!")
 
 
 if __name__ == "__main__":

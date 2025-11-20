@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, avg, count, desc
+from pyspark.sql.functions import col, avg, count as spark_count, desc
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType, FloatType
 from neo4j import GraphDatabase
 import time
@@ -23,6 +23,7 @@ class SparkQueryAlgorithm:
         self.driver = GraphDatabase.driver(neo4j_uri, auth=(neo4j_user, neo4j_password))
     
     def load_products_from_neo4j(self):
+        print("Loading products from Neo4j...")
         with self.driver.session(database="amazon-analysis") as session:
             result = session.run("""
                 MATCH (p:Product)
@@ -32,6 +33,7 @@ class SparkQueryAlgorithm:
             """)
             
             data = []
+            count = 0
             for record in result:
                 data.append((
                     record['id'],
@@ -42,6 +44,11 @@ class SparkQueryAlgorithm:
                     float(record['avg_rating']) if record['avg_rating'] else 0.0,
                     record['total_reviews'] if record['total_reviews'] else 0
                 ))
+                count += 1
+                if count % 50000 == 0:
+                    print(f"Loaded {count:,} products...")
+        
+        print(f"Total products loaded: {count:,}")
         
         schema = StructType([
             StructField("id", IntegerType(), True),
@@ -95,6 +102,7 @@ class SparkQueryAlgorithm:
     def find_products_by_active_customers(self, min_customer_reviews=5, k=10):
         start_time = time.time()
         
+        print("Loading reviews from Neo4j...")
         with self.driver.session(database="amazon-analysis") as session:
             result = session.run("""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
@@ -104,6 +112,7 @@ class SparkQueryAlgorithm:
             """)
             
             data = []
+            count = 0
             for record in result:
                 data.append((
                     record['customer_id'],
@@ -114,6 +123,11 @@ class SparkQueryAlgorithm:
                     record['total_reviews'] if record['total_reviews'] else 0,
                     record['rating']
                 ))
+                count += 1
+                if count % 500000 == 0:
+                    print(f"Loaded {count:,} reviews...")
+        
+        print(f"Total reviews loaded: {count:,}")
         
         schema = StructType([
             StructField("customer_id", StringType(), True),
@@ -128,7 +142,7 @@ class SparkQueryAlgorithm:
         reviews_df = self.spark.createDataFrame(data, schema)
         
         customer_review_counts = reviews_df.groupBy("customer_id") \
-            .agg(count("*").alias("review_count")) \
+            .agg(spark_count("*").alias("review_count")) \
             .filter(col("review_count") >= min_customer_reviews)
         
         active_customer_products = reviews_df.join(
@@ -139,7 +153,7 @@ class SparkQueryAlgorithm:
         result_df = active_customer_products.groupBy(
             "product_id", "asin", "title", "product_avg_rating", "total_reviews"
         ).agg(
-            count("customer_id").alias("active_customer_count"),
+            spark_count("customer_id").alias("active_customer_count"),
             avg("rating").alias("rating_from_active_customers")
         ).orderBy(
             col("active_customer_count").desc(),

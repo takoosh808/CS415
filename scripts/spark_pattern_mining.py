@@ -31,12 +31,21 @@ class SparkPatternMining:
     def split_train_test_spark(self, train_ratio=0.7):
         start_time = time.time()
         
+        print("Loading review relationships from Neo4j...")
         with self.driver.session(database="amazon-analysis") as session:
             result = session.run("""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
                 RETURN elementId(r) as rel_id
             """)
-            rel_data = [(record['rel_id'],) for record in result]
+            rel_data = []
+            count = 0
+            for record in result:
+                rel_data.append((record['rel_id'],))
+                count += 1
+                if count % 500000 == 0:
+                    print(f"Loaded {count:,} review relationships...")
+        
+        print(f"Total review relationships loaded: {count:,}")
         
         schema = StructType([StructField("rel_id", StringType(), True)])
         reviews_df = self.spark.createDataFrame(rel_data, schema)
