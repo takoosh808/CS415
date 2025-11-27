@@ -1,0 +1,21 @@
+{
+  "total_products": 17456,
+  "total_customers": 24893,
+  "total_reviews": 208319,
+  "total_similar": 51482,
+  "group_distribution": {
+    "Book": 8976,
+    "Music": 4521,
+    "DVD": 2876,
+    "Video": 1083
+  },
+  "rating_distribution": {
+    "1": 3421,
+    "2": 5123,
+    "3": 8945,
+    "4": 12567,
+    "5": 18234
+  },
+  "train_count": 145823,
+  "test_count": 62496
+}

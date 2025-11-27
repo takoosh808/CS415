@@ -1,0 +1,28 @@
+{
+  "total_products": 548552,
+  "total_customers": 1555170,
+  "total_reviews": 7593244,
+  "total_similar": 0,
+  "group_distribution": {
+    "Book": 393561,
+    "Music": 103144,
+    "Video": 26131,
+    "DVD": 19828,
+    "null": 5868,
+    "Toy": 8,
+    "Software": 5,
+    "CE": 4,
+    "Video Games": 1,
+    "Baby Product": 1,
+    "Sports": 1
+  },
+  "rating_distribution": {
+    "1": 2732,
+    "2": 4954,
+    "3": 27788,
+    "4": 117863,
+    "5": 249398
+  },
+  "train_count": 5314414,
+  "test_count": 2278830
+}

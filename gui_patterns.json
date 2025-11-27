@@ -1,0 +1,658 @@
+{
+  "train_count": 5314414,
+  "test_count": 2278830,
+  "min_support": 10,
+  "max_customers": 500,
+  "patterns": [
+    {
+      "products": [
+        "B000065U3Q",
+        "B000065U6P"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring"
+      ],
+      "train_support": 20,
+      "test_support": 342,
+      "confidence": 17.1
+    },
+    {
+      "products": [
+        "B000065U6P",
+        "B000069K5I"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring",
+        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
+      ],
+      "train_support": 21,
+      "test_support": 341,
+      "confidence": 16.238
+    },
+    {
+      "products": [
+        "0590353403",
+        "0807281956"
+      ],
+      "titles": [
+        "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)"
+      ],
+      "train_support": 14,
+      "test_support": 340,
+      "confidence": 24.286
+    },
+    {
+      "products": [
+        "B000065U3Q",
+        "B000069K5I"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
+      ],
+      "train_support": 21,
+      "test_support": 336,
+      "confidence": 16.0
+    },
+    {
+      "products": [
+        "B000069F5H",
+        "B000069K5I"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)",
+        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
+      ],
+      "train_support": 20,
+      "test_support": 330,
+      "confidence": 16.5
+    },
+    {
+      "products": [
+        "B000065U3Q",
+        "B000067DNF"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)"
+      ],
+      "train_support": 18,
+      "test_support": 329,
+      "confidence": 18.278
+    },
+    {
+      "products": [
+        "B000065U3Q",
+        "B000069F5H"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
+      ],
+      "train_support": 22,
+      "test_support": 328,
+      "confidence": 14.909
+    },
+    {
+      "products": [
+        "B000067DNF",
+        "B000069K5I"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
+      ],
+      "train_support": 20,
+      "test_support": 326,
+      "confidence": 16.3
+    },
+    {
+      "products": [
+        "B00003CWT6",
+        "B000065U6P"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring"
+      ],
+      "train_support": 24,
+      "test_support": 320,
+      "confidence": 13.333
+    },
+    {
+      "products": [
+        "B00003CWT6",
+        "B000069K5I"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
+      ],
+      "train_support": 24,
+      "test_support": 319,
+      "confidence": 13.292
+    },
+    {
+      "products": [
+        "B000065U6P",
+        "B000069F5H"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring",
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
+      ],
+      "train_support": 20,
+      "test_support": 316,
+      "confidence": 15.8
+    },
+    {
+      "products": [
+        "B000067DNF",
+        "B000069F5H"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
+      ],
+      "train_support": 19,
+      "test_support": 316,
+      "confidence": 16.632
+    },
+    {
+      "products": [
+        "B00003CWT6",
+        "B000067DNF"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)"
+      ],
+      "train_support": 21,
+      "test_support": 312,
+      "confidence": 14.857
+    },
+    {
+      "products": [
+        "B00003CWT6",
+        "B000065U3Q"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)"
+      ],
+      "train_support": 23,
+      "test_support": 310,
+      "confidence": 13.478
+    },
+    {
+      "products": [
+        "B000065U6P",
+        "B000067DNF"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring",
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)"
+      ],
+      "train_support": 17,
+      "test_support": 304,
+      "confidence": 17.882
+    },
+    {
+      "products": [
+        "B00003CWT6",
+        "B000069F5H"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
+      ],
+      "train_support": 24,
+      "test_support": 303,
+      "confidence": 12.625
+    },
+    {
+      "products": [
+        "B00006HBUH",
+        "B00006HBUI"
+      ],
+      "titles": [
+        "Star Wars - Episode II, Ataque de los Clones (Attack of the Clones)",
+        "Star Wars - Episode II, Attack of the Clones (Full Screen Edition)"
+      ],
+      "train_support": 16,
+      "test_support": 175,
+      "confidence": 10.938
+    },
+    {
+      "products": [
+        "B00003CXI0",
+        "B000062TU2"
+      ],
+      "titles": [
+        "Harry Potter and the Sorcerer's Stone",
+        "Harry Potter and the Sorcerer's Stone - Spanish Edition"
+      ],
+      "train_support": 14,
+      "test_support": 171,
+      "confidence": 12.214
+    },
+    {
+      "products": [
+        "B00005JKCH",
+        "B00006G8LB"
+      ],
+      "titles": [
+        "Spider-Man (Widescreen Special Edition)",
+        "Spider-Man"
+      ],
+      "train_support": 17,
+      "test_support": 131,
+      "confidence": 7.706
+    },
+    {
+      "products": [
+        "B00006G8LB",
+        "B00006G8LC"
+      ],
+      "titles": [
+        "Spider-Man",
+        "Spider-Man"
+      ],
+      "train_support": 15,
+      "test_support": 114,
+      "confidence": 7.6
+    },
+    {
+      "products": [
+        "B00006G8G4",
+        "B00006G8LB"
+      ],
+      "titles": [
+        "Spider-Man (Limited Edition Collector's Gift Set)",
+        "Spider-Man"
+      ],
+      "train_support": 15,
+      "test_support": 114,
+      "confidence": 7.6
+    },
+    {
+      "products": [
+        "B00006F2TV",
+        "B00006G8G4"
+      ],
+      "titles": [
+        "Spider-Man (Full Screen Special Edition)",
+        "Spider-Man (Limited Edition Collector's Gift Set)"
+      ],
+      "train_support": 15,
+      "test_support": 101,
+      "confidence": 6.733
+    },
+    {
+      "products": [
+        "B00005JKCH",
+        "B00006G8G4"
+      ],
+      "titles": [
+        "Spider-Man (Widescreen Special Edition)",
+        "Spider-Man (Limited Edition Collector's Gift Set)"
+      ],
+      "train_support": 16,
+      "test_support": 87,
+      "confidence": 5.438
+    },
+    {
+      "products": [
+        "B00003CWT6",
+        "B00005JKCH"
+      ],
+      "titles": [
+        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "Spider-Man (Widescreen Special Edition)"
+      ],
+      "train_support": 14,
+      "test_support": 29,
+      "confidence": 2.071
+    },
+    {
+      "products": [
+        "6304286961",
+        "B00004YKSD"
+      ],
+      "titles": [
+        "The Doors",
+        "The Doors (2-Disc Special Edition)"
+      ],
+      "train_support": 68,
+      "test_support": 24,
+      "confidence": 0.353
+    },
+    {
+      "products": [
+        "6304286961",
+        "B00005NB8K"
+      ],
+      "titles": [
+        "The Doors",
+        "The Doors (Special Edition)"
+      ],
+      "train_support": 68,
+      "test_support": 18,
+      "confidence": 0.265
+    },
+    {
+      "products": [
+        "B00004YKSD",
+        "B00005NB8K"
+      ],
+      "titles": [
+        "The Doors (2-Disc Special Edition)",
+        "The Doors (Special Edition)"
+      ],
+      "train_support": 47,
+      "test_support": 15,
+      "confidence": 0.319
+    },
+    {
+      "products": [
+        "0790747324",
+        "B00004Z4U9"
+      ],
+      "titles": [
+        "The Time Machine",
+        "The Time Machine - Limited Edition Collector's Set"
+      ],
+      "train_support": 72,
+      "test_support": 13,
+      "confidence": 0.181
+    },
+    {
+      "products": [
+        "B00004Z4U9",
+        "B000056BRE"
+      ],
+      "titles": [
+        "The Time Machine - Limited Edition Collector's Set",
+        "The Time Machine"
+      ],
+      "train_support": 55,
+      "test_support": 13,
+      "confidence": 0.236
+    },
+    {
+      "products": [
+        "0671047337",
+        "B0000667EU"
+      ],
+      "titles": [
+        "Separation of Power (Mitch Rapp Novels)",
+        "Separation of Power"
+      ],
+      "train_support": 32,
+      "test_support": 12,
+      "confidence": 0.375
+    },
+    {
+      "products": [
+        "0784010528",
+        "B00005NB8K"
+      ],
+      "titles": [
+        "The Doors",
+        "The Doors (Special Edition)"
+      ],
+      "train_support": 58,
+      "test_support": 11,
+      "confidence": 0.19
+    },
+    {
+      "products": [
+        "0784010528",
+        "B00004YKSD"
+      ],
+      "titles": [
+        "The Doors",
+        "The Doors (2-Disc Special Edition)"
+      ],
+      "train_support": 55,
+      "test_support": 11,
+      "confidence": 0.2
+    },
+    {
+      "products": [
+        "0790747324",
+        "B000056BRE"
+      ],
+      "titles": [
+        "The Time Machine",
+        "The Time Machine"
+      ],
+      "train_support": 74,
+      "test_support": 10,
+      "confidence": 0.135
+    },
+    {
+      "products": [
+        "0671047337",
+        "0671047345"
+      ],
+      "titles": [
+        "Separation of Power (Mitch Rapp Novels)",
+        "Separation of Power"
+      ],
+      "train_support": 27,
+      "test_support": 10,
+      "confidence": 0.37
+    },
+    {
+      "products": [
+        "0784010528",
+        "6304286961"
+      ],
+      "titles": [
+        "The Doors",
+        "The Doors"
+      ],
+      "train_support": 78,
+      "test_support": 7,
+      "confidence": 0.09
+    },
+    {
+      "products": [
+        "0671047345",
+        "0743509315"
+      ],
+      "titles": [
+        "Separation of Power",
+        "Separation Of Power"
+      ],
+      "train_support": 34,
+      "test_support": 7,
+      "confidence": 0.206
+    },
+    {
+      "products": [
+        "0671047345",
+        "0743509307"
+      ],
+      "titles": [
+        "Separation of Power",
+        "Separation Of Power"
+      ],
+      "train_support": 25,
+      "test_support": 6,
+      "confidence": 0.24
+    },
+    {
+      "products": [
+        "0671047345",
+        "B0000667EU"
+      ],
+      "titles": [
+        "Separation of Power",
+        "Separation of Power"
+      ],
+      "train_support": 25,
+      "test_support": 6,
+      "confidence": 0.24
+    },
+    {
+      "products": [
+        "0743509307",
+        "0743509315"
+      ],
+      "titles": [
+        "Separation Of Power",
+        "Separation Of Power"
+      ],
+      "train_support": 40,
+      "test_support": 5,
+      "confidence": 0.125
+    },
+    {
+      "products": [
+        "0743509315",
+        "B0000667EU"
+      ],
+      "titles": [
+        "Separation Of Power",
+        "Separation of Power"
+      ],
+      "train_support": 39,
+      "test_support": 4,
+      "confidence": 0.103
+    },
+    {
+      "products": [
+        "0671047337",
+        "0743509315"
+      ],
+      "titles": [
+        "Separation of Power (Mitch Rapp Novels)",
+        "Separation Of Power"
+      ],
+      "train_support": 38,
+      "test_support": 4,
+      "confidence": 0.105
+    },
+    {
+      "products": [
+        "0743509307",
+        "B0000667EU"
+      ],
+      "titles": [
+        "Separation Of Power",
+        "Separation of Power"
+      ],
+      "train_support": 29,
+      "test_support": 4,
+      "confidence": 0.138
+    },
+    {
+      "products": [
+        "0671047337",
+        "0743509307"
+      ],
+      "titles": [
+        "Separation of Power (Mitch Rapp Novels)",
+        "Separation Of Power"
+      ],
+      "train_support": 28,
+      "test_support": 4,
+      "confidence": 0.143
+    },
+    {
+      "products": [
+        "0140445684",
+        "0140445706"
+      ],
+      "titles": [
+        "Capital : A Critique of Political Economy (Penguin Classics)",
+        "Capital: A Critique of Political Economy, Vol. 3 (Penguin Classics)"
+      ],
+      "train_support": 21,
+      "test_support": 4,
+      "confidence": 0.19
+    },
+    {
+      "products": [
+        "0140445684",
+        "0140445692"
+      ],
+      "titles": [
+        "Capital : A Critique of Political Economy (Penguin Classics)",
+        "Capital : A Critique of Political Economy (Penguin Classics) (Volume 2)"
+      ],
+      "train_support": 18,
+      "test_support": 4,
+      "confidence": 0.222
+    },
+    {
+      "products": [
+        "0671727737",
+        "0785773878"
+      ],
+      "titles": [
+        "The Eagle Has Landed",
+        "Eagle Has Landed"
+      ],
+      "train_support": 18,
+      "test_support": 3,
+      "confidence": 0.167
+    },
+    {
+      "products": [
+        "0140445692",
+        "0140445706"
+      ],
+      "titles": [
+        "Capital : A Critique of Political Economy (Penguin Classics) (Volume 2)",
+        "Capital: A Critique of Political Economy, Vol. 3 (Penguin Classics)"
+      ],
+      "train_support": 16,
+      "test_support": 3,
+      "confidence": 0.188
+    },
+    {
+      "products": [
+        "0671023195",
+        "0743509315"
+      ],
+      "titles": [
+        "Transfer Of Power (Mitch Rapp Novels)",
+        "Separation Of Power"
+      ],
+      "train_support": 15,
+      "test_support": 2,
+      "confidence": 0.133
+    },
+    {
+      "products": [
+        "0790747324",
+        "B00003CWT6"
+      ],
+      "titles": [
+        "The Time Machine",
+        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)"
+      ],
+      "train_support": 14,
+      "test_support": 2,
+      "confidence": 0.143
+    },
+    {
+      "products": [
+        "0425177181",
+        "0671727737"
+      ],
+      "titles": [
+        "The Eagle Has Landed",
+        "The Eagle Has Landed"
+      ],
+      "train_support": 14,
+      "test_support": 1,
+      "confidence": 0.071
+    }
+  ]
+}

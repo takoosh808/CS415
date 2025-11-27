@@ -1,0 +1,79 @@
+Project Statement for Milestone 4
+Team Baddie
+Brian Leung, Cayden Calo, Jeremiah Carlo Miguel, Travis Takushi
+
+================================================================================
+1. USER INTERFACE AND DATA VISUALIZATION
+================================================================================
+
+1.a Describe the user interface and data visualization components of the software.
+- GUI: Python Tkinter with 2 tabs (Complex Queries, Pattern Mining).
+- Visualizations: Embedded Matplotlib charts in Pattern Mining tab.
+  - Dual charts: Total Support (top) and Confidence (bottom).
+  - Displays top patterns with product names, support, confidence.
+- Interactivity: Fully typeable filters for queries (group, min/max rating, min/max reviews, min/max sales rank, limit) with buttons (Execute Query, Clear All). Pattern Mining provides two modes (Load Pre‑Generated Results, Mine Patterns Now) with dual‑panel charts.
+
+================================================================================
+2. USER QUERIES AND RESULTS
+================================================================================
+
+2.a Provide user queries and their results to describe functionality.
+- Query 1: High‑Rated DVDs
+  - Conditions: group='DVD', min_rating=4.5, min_reviews=50, k=20
+  - Time: ~1.23s | Result: 20 DVDs (limit), avg rating ~4.7
+
+- Query 2: Popular Books
+  - Conditions: group='Book', min_reviews=100, k=20
+  - Time: ~1.47s | Result: 20 books (limit), top has >1,100 reviews
+
+- Query 3: Top Music Albums
+  - Conditions: group='Music', min_rating=4.0, max_salesrank=100000, k=20
+  - Time: ~1.35s | Result: 20 albums (limit), avg rating ~4.6
+
+- Query 4: Highest Rated (All)
+  - Conditions: min_rating=4.8, min_reviews=20, k=30
+  - Time: ~1.18s | Result: 28 products, Books dominate
+
+- Query 5: Excellent Sales Performance
+  - Conditions: max_salesrank=10000, min_rating=4.0, k=50
+  - Time: ~1.29s | Result: 50 products (limit), avg rating ~4.4
+
+================================================================================
+3. SCALABILITY
+================================================================================
+
+3.a NoSQL cluster storage and benchmarks; compare with non‑cluster.
+- Database: Neo4j 4.4 Enterprise, 3‑core causal cluster.
+- Storage Model (per core, replicated):
+  - Nodes: Product 548,552; Customer 1,555,170; Category 26,057.
+  - Relationships: REVIEWED 7,593,244; BELONGS_TO 12,964,535; SIMILAR 1,231,439.
+- Ingestion (Bulk LOAD CSV):
+  - Single node (Community): 551.3s total (23.9M elements, 43,386 elems/s).
+  - Enterprise cluster (3 cores, writes to LEADER): 1,523.5s per core; 71.7M total elements written (replication). Effective total throughput ≈ 47,094 elems/s (~108% of single when accounting for 3x copies).
+- Query performance (Enterprise cluster):
+  - Simple top‑rated query (~100 results): ≈21.4s, <0.5% variance across cores.
+  - Heavy aggregation (~50 results): ≈392s avg, <5% variance.
+- Comparison: Single node faster for ingestion (no replication). Enterprise offers redundancy, HA, and consistent read scalability with near‑identical performance across cores.
+
+3.b Hadoop/Spark cluster configuration and benchmarks; comparison.
+- Implementation used: PySpark in local[*] mode (cluster‑ready code paths).
+- Algorithms: DataFrame/RDD filtering/sorting; FP‑Growth for frequent itemsets.
+- Benchmarks (local mode):
+  - Products load: ~15s (from Neo4j cluster to Spark DataFrame).
+  - Pattern mining: sampled customers (1k–2k) functional; full cluster benchmarks not executed.
+- Comparison: No Hadoop/Spark cluster benchmarks collected; primary scalability focus demonstrated on Neo4j cluster.
+
+3.c Hardware used for scalability tests.
+- Device: DESKTOP-TP7B022 (ThinkPad)
+- CPU: AMD Ryzen 7 5700U with Radeon Graphics (1.80 GHz)
+- RAM: 16.0 GB (14.8 GB usable)
+- System: 64-bit OS, x64-based processor
+- OS: Windows 11 Pro
+- Docker: Docker Desktop for Windows (WSL2) running Neo4j cluster containers
+
+================================================================================
+4. SOURCE CODE
+================================================================================
+
+4.a Application prototype source code (ZIP provided separately, dataset excluded).
+    See Zip file.
