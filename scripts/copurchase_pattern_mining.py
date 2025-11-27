@@ -6,12 +6,13 @@ from collections import defaultdict
 
 class PatternMining:
     
-    def __init__(self):
+    def __init__(self, database="neo4j"):
         self.driver = GraphDatabase.driver("bolt://localhost:7687", 
                                           auth=("neo4j", "Password"))
+        self.database = database
     
     def split_train_test(self, train_ratio=0.7):
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database=self.database) as session:
             result = session.run("""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
                 RETURN elementId(r) as rel_id
@@ -46,7 +47,7 @@ class PatternMining:
     def find_frequent_patterns(self, min_support=10, max_customers=500, dataset='train'):
         start_time = time.time()
         
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database=self.database) as session:
             result = session.run("""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
                 WHERE r.dataset = $dataset
@@ -81,6 +82,19 @@ class PatternMining:
             
             top_pairs = sorted(frequent_pairs.items(), key=lambda x: x[1], reverse=True)[:20]
             
+            # Get true support counts for all products from full dataset
+            true_support = {}
+            for pair, _ in top_pairs:
+                for asin in pair:
+                    if asin not in true_support:
+                        result = session.run("""
+                            MATCH (c:Customer)-[r:REVIEWED]->(p:Product {asin: $asin})
+                            WHERE r.dataset = $dataset
+                            RETURN count(DISTINCT c) as count
+                        """, asin=asin, dataset=dataset)
+                        record = result.single()
+                        true_support[asin] = record['count'] if record else 0
+            
             patterns = []
             for pair, support in top_pairs:
                 result = session.run("""
@@ -91,7 +105,8 @@ class PatternMining:
                 
                 record = result.single()
                 if record:
-                    confidence = support / item_counts[pair[0]]
+                    # Use true support from full dataset, not sampled count
+                    confidence = support / true_support[pair[0]] if true_support[pair[0]] > 0 else 0
                     patterns.append({
                         'products': pair,
                         'titles': (record['title1'], record['title2']),
@@ -112,7 +127,7 @@ class PatternMining:
     def validate_patterns_in_test(self, train_patterns, min_support=10, max_customers=500):
         train_pairs = [p['products'] for p in train_patterns['top_patterns']]
         
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database=self.database) as session:
             result = session.run("""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
                 WHERE r.dataset = 'test'
@@ -148,7 +163,7 @@ class PatternMining:
         return validated_patterns
     
     def find_customers_for_pattern(self, product_pair, dataset='train'):
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database=self.database) as session:
             result = session.run("""
                 MATCH (c:Customer)-[r1:REVIEWED]->(p1:Product {asin: $asin1})
                 MATCH (c)-[r2:REVIEWED]->(p2:Product {asin: $asin2})

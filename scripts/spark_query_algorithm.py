@@ -24,7 +24,7 @@ class SparkQueryAlgorithm:
     
     def load_products_from_neo4j(self):
         print("Loading products from Neo4j...")
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database="neo4j") as session:
             result = session.run("""
                 MATCH (p:Product)
                 RETURN p.id as id, p.asin as asin, p.title as title,
@@ -103,7 +103,7 @@ class SparkQueryAlgorithm:
         start_time = time.time()
         
         print("Loading reviews from Neo4j...")
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database="neo4j") as session:
             result = session.run("""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
                 RETURN c.id as customer_id, p.id as product_id, p.asin as asin,

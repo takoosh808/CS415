@@ -32,7 +32,7 @@ class SparkPatternMining:
         start_time = time.time()
         
         print("Loading review relationships from Neo4j...")
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database="neo4j") as session:
             result = session.run("""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
                 RETURN elementId(r) as rel_id
@@ -57,7 +57,7 @@ class SparkPatternMining:
         test_count = test_df.count()
         
         # Mark relationships in Neo4j
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database="neo4j") as session:
             # Mark train relationships
             train_ids = [row['rel_id'] for row in train_df.collect()]
             for i in range(0, len(train_ids), 10000):
@@ -101,7 +101,7 @@ class SparkPatternMining:
         """
         start_time = time.time()
         
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database="neo4j") as session:
             result = session.run(f"""
                 MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
                 WHERE r.dataset = '{dataset}'
@@ -140,7 +140,7 @@ class SparkPatternMining:
             asins = row['items']
             support = row['freq']
             
-            with self.driver.session(database="amazon-analysis") as session:
+            with self.driver.session(database="neo4j") as session:
                 result = session.run("""
                     MATCH (p1:Product {asin: $asin1})
                     MATCH (p2:Product {asin: $asin2})
@@ -203,7 +203,7 @@ class SparkPatternMining:
     
     def find_customers_for_pattern(self, product_pair, dataset='train'):
         """Find customers who purchased both products in a pattern"""
-        with self.driver.session(database="amazon-analysis") as session:
+        with self.driver.session(database="neo4j") as session:
             result = session.run("""
                 MATCH (c:Customer)-[r1:REVIEWED]->(p1:Product {asin: $asin1})
                 MATCH (c)-[r2:REVIEWED]->(p2:Product {asin: $asin2})

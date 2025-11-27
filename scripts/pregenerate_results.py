@@ -159,7 +159,7 @@ class ResultGenerator:
         query = f"""
             MATCH (p:Product)
             WHERE {where_clause}
-            RETURN p.id as id, p.asin as asin, p.title as title, 
+            RETURN p.asin as asin, p.title as title, 
                    p.group as group, p.salesrank as salesrank,
                    p.avg_rating as avg_rating, p.total_reviews as total_reviews
             ORDER BY p.avg_rating DESC, p.total_reviews DESC
