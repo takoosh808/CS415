@@ -1,658 +1,3260 @@
 {
-  "train_count": 5314414,
-  "test_count": 2278830,
-  "min_support": 10,
-  "max_customers": 500,
+  "metadata": {
+    "generated_at": "2025-11-29 14:38:52",
+    "total_patterns": 50,
+    "algorithm": "FP-Growth (Spark MLlib)",
+    "data_source": "Neo4j 3-node cluster"
+  },
   "patterns": [
     {
-      "products": [
-        "B000065U3Q",
-        "B000065U6P"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring"
-      ],
-      "train_support": 20,
-      "test_support": 342,
-      "confidence": 17.1
+      "rank": 1,
+      "products": {
+        "asin1": "0807220280",
+        "asin2": "0807220299",
+        "title1": "Harry Potter and the Order of the Phoenix (Book 5, Audio)",
+        "title2": "Harry Potter and the Order of the Phoenix (Book 5 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 246,
+      "confidence": 0.0049383707391496365,
+      "sample_customers": [
+        {
+          "customer_id": "A3NPX27P4U8QJF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A22OXKGPAQWLQ8",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ACIY1RLMYFNO7",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2DUHVJ74JXYS5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2386P602G9547",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2O9QQP0HGUWKO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ACUUA90VVOCAS",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A35DHJSOJAYO4P",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "ADQ9FDBDRBSD5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3A06ZU6QI9KIL",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000065U6P",
-        "B000069K5I"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring",
-        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
-      ],
-      "train_support": 21,
-      "test_support": 341,
-      "confidence": 16.238
+      "rank": 2,
+      "products": {
+        "asin1": "0439567629",
+        "asin2": "0807220299",
+        "title1": "Harry Potter and the Order of the Phoenix (Book 5, Deluxe Edition)",
+        "title2": "Harry Potter and the Order of the Phoenix (Book 5 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 242,
+      "confidence": 0.004858072027943952,
+      "sample_customers": [
+        {
+          "customer_id": "A3S6YZKGKTKJ44",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3P7GYZQXT0QNK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3P7GYZQXT0QNK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A16DN2WLAQD4F7",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 4.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0590353403",
-        "0807281956"
-      ],
-      "titles": [
-        "Harry Potter and the Sorcerer's Stone (Book 1)",
-        "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)"
-      ],
-      "train_support": 14,
-      "test_support": 340,
-      "confidence": 24.286
+      "rank": 3,
+      "products": {
+        "asin1": "043935806X",
+        "asin2": "0807220299",
+        "title1": "Harry Potter and the Order of the Phoenix (Book 5)",
+        "title2": "Harry Potter and the Order of the Phoenix (Book 5 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 238,
+      "confidence": 0.004777773316738267,
+      "sample_customers": [
+        {
+          "customer_id": "A3S6YZKGKTKJ44",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3P7GYZQXT0QNK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3P7GYZQXT0QNK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A349N9VVC9R1NF",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A16DN2WLAQD4F7",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 1.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 2.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000065U3Q",
-        "B000069K5I"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
-      ],
-      "train_support": 21,
-      "test_support": 336,
-      "confidence": 16.0
+      "rank": 4,
+      "products": {
+        "asin1": "0439567629",
+        "asin2": "0807220280",
+        "title1": "Harry Potter and the Order of the Phoenix (Book 5, Deluxe Edition)",
+        "title2": "Harry Potter and the Order of the Phoenix (Book 5, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 227,
+      "confidence": 0.004556951860922632,
+      "sample_customers": [
+        {
+          "customer_id": "A3NPX27P4U8QJF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3NPX27P4U8QJF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A22OXKGPAQWLQ8",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ACIY1RLMYFNO7",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2DUHVJ74JXYS5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2386P602G9547",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2O9QQP0HGUWKO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ACUUA90VVOCAS",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A35DHJSOJAYO4P",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "ADQ9FDBDRBSD5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000069F5H",
-        "B000069K5I"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)",
-        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
-      ],
-      "train_support": 20,
-      "test_support": 330,
-      "confidence": 16.5
+      "rank": 5,
+      "products": {
+        "asin1": "043935806X",
+        "asin2": "0439567629",
+        "title1": "Harry Potter and the Order of the Phoenix (Book 5)",
+        "title2": "Harry Potter and the Order of the Phoenix (Book 5, Deluxe Edition)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 226,
+      "confidence": 0.004536877183121211,
+      "sample_customers": [
+        {
+          "customer_id": "AHK24AGEAYCFJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AHK24AGEAYCFJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AHK24AGEAYCFJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AHK24AGEAYCFJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AHK24AGEAYCFJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1I4GJF9FNFCRI",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 1.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 2.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000065U3Q",
-        "B000067DNF"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)"
-      ],
-      "train_support": 18,
-      "test_support": 329,
-      "confidence": 18.278
+      "rank": 6,
+      "products": {
+        "asin1": "0439139600",
+        "asin2": "0939173379",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 223,
+      "confidence": 0.004476653149716947,
+      "sample_customers": [
+        {
+          "customer_id": "A1YH7FF45K1856",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ENR2KRTIWEWV",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AVMBPQNZ7E9QP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2KQC0AGRJOH74",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2NA7KENH932J2",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1GB9BN1MHM25W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A253TNCMEKWE7X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3O0UL05Q6LSMJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQGISDG8KML8W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQATFS6MK9J7N",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000065U3Q",
-        "B000069F5H"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
-      ],
-      "train_support": 22,
-      "test_support": 328,
-      "confidence": 14.909
+      "rank": 7,
+      "products": {
+        "asin1": "0439139597",
+        "asin2": "0807282588",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 223,
+      "confidence": 0.004476653149716947,
+      "sample_customers": [
+        {
+          "customer_id": "A22FCTQX3V1MFY",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A35FG1CPSRL9A4",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A39476Z41H9VK3",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1S7HVTLO9N3ZJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AS62ZQXWVKHRB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JSDV57XPD937",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQATFS6MK9J7N",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A69Z3F9A2ILNP",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A2E7ENC86RVRL9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3GO4IQ2FS2RTE",
+          "rating1": 3.0,
+          "rating2": 3.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000067DNF",
-        "B000069K5I"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
-      ],
-      "train_support": 20,
-      "test_support": 326,
-      "confidence": 16.3
+      "rank": 8,
+      "products": {
+        "asin1": "0786229276",
+        "asin2": "0807282588",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 222,
+      "confidence": 0.004456578471915526,
+      "sample_customers": [
+        {
+          "customer_id": "A5LJ7K06AEEOA",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1QWM56MB6KYDA",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2T92HH15I0BIP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1EKHS2I77AM54",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1UBHBAZH8WFQO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A29BWWPLZOBIT4",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A3AZXJ9S6J3PI9",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A6SQU6GAW3OGM",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00003CWT6",
-        "B000065U6P"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring"
-      ],
-      "train_support": 24,
-      "test_support": 320,
-      "confidence": 13.333
+      "rank": 9,
+      "products": {
+        "asin1": "0439139597",
+        "asin2": "0786229276",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 222,
+      "confidence": 0.004456578471915526,
+      "sample_customers": [
+        {
+          "customer_id": "A1O4E7ORV165N1",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2X3QT0NMG5EKC",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2FC05412OPAHZ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2FC05412OPAHZ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATAPGTPX05EW9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2Y1P0F0867L4D",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3K1RVYM3JQZZS",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1TFA5AQ9587P5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ASBKMJ1NKO2H0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AIN8LSXF7VUY2",
+          "rating1": 4.0,
+          "rating2": 4.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00003CWT6",
-        "B000069K5I"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)"
-      ],
-      "train_support": 24,
-      "test_support": 319,
-      "confidence": 13.292
+      "rank": 10,
+      "products": {
+        "asin1": "043935806X",
+        "asin2": "0807220280",
+        "title1": "Harry Potter and the Order of the Phoenix (Book 5)",
+        "title2": "Harry Potter and the Order of the Phoenix (Book 5, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 221,
+      "confidence": 0.004436503794114105,
+      "sample_customers": [
+        {
+          "customer_id": "A3NPX27P4U8QJF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A22OXKGPAQWLQ8",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ACIY1RLMYFNO7",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "ACIY1RLMYFNO7",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2DUHVJ74JXYS5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2386P602G9547",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2O9QQP0HGUWKO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ACUUA90VVOCAS",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A35DHJSOJAYO4P",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "ADQ9FDBDRBSD5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000065U6P",
-        "B000069F5H"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring",
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
-      ],
-      "train_support": 20,
-      "test_support": 316,
-      "confidence": 15.8
+      "rank": 11,
+      "products": {
+        "asin1": "0439139600",
+        "asin2": "0807282588",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 221,
+      "confidence": 0.004436503794114105,
+      "sample_customers": [
+        {
+          "customer_id": "A1YH7FF45K1856",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ENR2KRTIWEWV",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AVMBPQNZ7E9QP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2KQC0AGRJOH74",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2NA7KENH932J2",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1GB9BN1MHM25W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A253TNCMEKWE7X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3O0UL05Q6LSMJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQGISDG8KML8W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQATFS6MK9J7N",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000067DNF",
-        "B000069F5H"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
-      ],
-      "train_support": 19,
-      "test_support": 316,
-      "confidence": 16.632
+      "rank": 12,
+      "products": {
+        "asin1": "0439139597",
+        "asin2": "0439139600",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 221,
+      "confidence": 0.004436503794114105,
+      "sample_customers": [
+        {
+          "customer_id": "A1YH7FF45K1856",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ENR2KRTIWEWV",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AVMBPQNZ7E9QP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2KQC0AGRJOH74",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2NA7KENH932J2",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1GB9BN1MHM25W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A253TNCMEKWE7X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3O0UL05Q6LSMJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQGISDG8KML8W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQATFS6MK9J7N",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00003CWT6",
-        "B000067DNF"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)"
-      ],
-      "train_support": 21,
-      "test_support": 312,
-      "confidence": 14.857
+      "rank": 13,
+      "products": {
+        "asin1": "0439139600",
+        "asin2": "0786229276",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 220,
+      "confidence": 0.004416429116312683,
+      "sample_customers": [
+        {
+          "customer_id": "A1YH7FF45K1856",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ENR2KRTIWEWV",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AVMBPQNZ7E9QP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2KQC0AGRJOH74",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2NA7KENH932J2",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1GB9BN1MHM25W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A253TNCMEKWE7X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3O0UL05Q6LSMJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQGISDG8KML8W",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQATFS6MK9J7N",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00003CWT6",
-        "B000065U3Q"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)"
-      ],
-      "train_support": 23,
-      "test_support": 310,
-      "confidence": 13.478
+      "rank": 14,
+      "products": {
+        "asin1": "0439139597",
+        "asin2": "0939173379",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 220,
+      "confidence": 0.004416429116312683,
+      "sample_customers": [
+        {
+          "customer_id": "AVMBPQNZ7E9QP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A297RW5EIVAGCJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1QWM56MB6KYDA",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2NTX5F1ZCBP33",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1562UWB7FO351",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1JOOCKQJIRUBQ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A81Z9DRQDT71Z",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2W0SHGPT7O0OI",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A15OJEJ290I1YK",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A1JIY98VABDDQK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B000065U6P",
-        "B000067DNF"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring",
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)"
-      ],
-      "train_support": 17,
-      "test_support": 304,
-      "confidence": 17.882
+      "rank": 15,
+      "products": {
+        "asin1": "0807282588",
+        "asin2": "0939173379",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4, Audio)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 220,
+      "confidence": 0.004416429116312683,
+      "sample_customers": [
+        {
+          "customer_id": "A35FG1CPSRL9A4",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A39476Z41H9VK3",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1S7HVTLO9N3ZJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AS62ZQXWVKHRB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JSDV57XPD937",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AQATFS6MK9J7N",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A69Z3F9A2ILNP",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A2E7ENC86RVRL9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3GO4IQ2FS2RTE",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A1E28JVO14GBCP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00003CWT6",
-        "B000069F5H"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
-        "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition Collector's Gift Set)"
-      ],
-      "train_support": 24,
-      "test_support": 303,
-      "confidence": 12.625
+      "rank": 16,
+      "products": {
+        "asin1": "0786229276",
+        "asin2": "0939173379",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 219,
+      "confidence": 0.004396354438511262,
+      "sample_customers": [
+        {
+          "customer_id": "AVMBPQNZ7E9QP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A297RW5EIVAGCJ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1QWM56MB6KYDA",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2NTX5F1ZCBP33",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1562UWB7FO351",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1JOOCKQJIRUBQ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A81Z9DRQDT71Z",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2W0SHGPT7O0OI",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A15OJEJ290I1YK",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A1JIY98VABDDQK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00006HBUH",
-        "B00006HBUI"
-      ],
-      "titles": [
-        "Star Wars - Episode II, Ataque de los Clones (Attack of the Clones)",
-        "Star Wars - Episode II, Attack of the Clones (Full Screen Edition)"
-      ],
-      "train_support": 16,
-      "test_support": 175,
-      "confidence": 10.938
+      "rank": 17,
+      "products": {
+        "asin1": "0807282588",
+        "asin2": "0807282596",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4, Audio)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4 Audio CD) (Harry Potter (J.K. Rowling))",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 210,
+      "confidence": 0.00421568233829847,
+      "sample_customers": [
+        {
+          "customer_id": "A26F2PUJSGR8HN",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2GV154GZR81SB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3DB4D362N36F0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3B4132NC4T9V5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3LP2BWJDJJSMP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1X4HRVJSIM5MH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00003CXI0",
-        "B000062TU2"
-      ],
-      "titles": [
-        "Harry Potter and the Sorcerer's Stone",
-        "Harry Potter and the Sorcerer's Stone - Spanish Edition"
-      ],
-      "train_support": 14,
-      "test_support": 171,
-      "confidence": 12.214
+      "rank": 18,
+      "products": {
+        "asin1": "0439139597",
+        "asin2": "0807282596",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4 Audio CD) (Harry Potter (J.K. Rowling))",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 210,
+      "confidence": 0.00421568233829847,
+      "sample_customers": [
+        {
+          "customer_id": "A1O4E7ORV165N1",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2X3QT0NMG5EKC",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2FC05412OPAHZ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2FC05412OPAHZ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATAPGTPX05EW9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2Y1P0F0867L4D",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3K1RVYM3JQZZS",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1TFA5AQ9587P5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ASBKMJ1NKO2H0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AIN8LSXF7VUY2",
+          "rating1": 4.0,
+          "rating2": 4.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00005JKCH",
-        "B00006G8LB"
-      ],
-      "titles": [
-        "Spider-Man (Widescreen Special Edition)",
-        "Spider-Man"
-      ],
-      "train_support": 17,
-      "test_support": 131,
-      "confidence": 7.706
+      "rank": 19,
+      "products": {
+        "asin1": "0439139600",
+        "asin2": "0807282596",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4 Audio CD) (Harry Potter (J.K. Rowling))",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 209,
+      "confidence": 0.004195607660497049,
+      "sample_customers": [
+        {
+          "customer_id": "A26F2PUJSGR8HN",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2GV154GZR81SB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3DB4D362N36F0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3B4132NC4T9V5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3LP2BWJDJJSMP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1X4HRVJSIM5MH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00006G8LB",
-        "B00006G8LC"
-      ],
-      "titles": [
-        "Spider-Man",
-        "Spider-Man"
-      ],
-      "train_support": 15,
-      "test_support": 114,
-      "confidence": 7.6
+      "rank": 20,
+      "products": {
+        "asin1": "0786229276",
+        "asin2": "0807282596",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4)",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4 Audio CD) (Harry Potter (J.K. Rowling))",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 209,
+      "confidence": 0.004195607660497049,
+      "sample_customers": [
+        {
+          "customer_id": "A26F2PUJSGR8HN",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2GV154GZR81SB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3DB4D362N36F0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3B4132NC4T9V5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3LP2BWJDJJSMP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1X4HRVJSIM5MH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00006G8G4",
-        "B00006G8LB"
-      ],
-      "titles": [
-        "Spider-Man (Limited Edition Collector's Gift Set)",
-        "Spider-Man"
-      ],
-      "train_support": 15,
-      "test_support": 114,
-      "confidence": 7.6
+      "rank": 21,
+      "products": {
+        "asin1": "0807282596",
+        "asin2": "0939173379",
+        "title1": "Harry Potter and the Goblet of Fire (Book 4 Audio CD) (Harry Potter (J.K. Rowling))",
+        "title2": "Harry Potter and the Goblet of Fire (Book 4)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 207,
+      "confidence": 0.004155458304894206,
+      "sample_customers": [
+        {
+          "customer_id": "A26F2PUJSGR8HN",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ABI4Y7NM42QLR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2GV154GZR81SB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3DB4D362N36F0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3B4132NC4T9V5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3LP2BWJDJJSMP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1X4HRVJSIM5MH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00006F2TV",
-        "B00006G8G4"
-      ],
-      "titles": [
-        "Spider-Man (Full Screen Special Edition)",
-        "Spider-Man (Limited Edition Collector's Gift Set)"
-      ],
-      "train_support": 15,
-      "test_support": 101,
-      "confidence": 6.733
+      "rank": 22,
+      "products": {
+        "asin1": "0807281751",
+        "asin2": "0939173344",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1, Audio)",
+        "title2": "Harry Potter and the Sorcerer's Stone",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 200,
+      "confidence": 0.004014935560284257,
+      "sample_customers": [
+        {
+          "customer_id": "A21VODT9DFEOFX",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A10J8HE0W0OPV9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JSDV57XPD937",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A25W2CE5ROCBIP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A39476Z41H9VK3",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A35CXYRRXHOFRH",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A3B8JB0HO5S9JM",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A16TS3Z2JJTPBP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A22313DRNDMOYB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A18DI33H6833XV",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00005JKCH",
-        "B00006G8G4"
-      ],
-      "titles": [
-        "Spider-Man (Widescreen Special Edition)",
-        "Spider-Man (Limited Edition Collector's Gift Set)"
-      ],
-      "train_support": 16,
-      "test_support": 87,
-      "confidence": 5.438
+      "rank": 23,
+      "products": {
+        "asin1": "0375432302",
+        "asin2": "0739307312",
+        "title1": "The Da Vinci Code",
+        "title2": "The Da Vinci Code",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 195,
+      "confidence": 0.003914562171277151,
+      "sample_customers": [
+        {
+          "customer_id": "A1Q7B6Q1BVBEUY",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "AG2UF1E0TQXX9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2UFHFEBGIA3HF",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "A3262D9AV2N7U3",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "A39VCMXI2GKP98",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "AIAS1XUMMBLHU",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2RANHZ2VRPI4X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2Z8O2203HX6JV",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1JLUYBPVF59OF",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3BVODX2KPBO8E",
+          "rating1": 1.0,
+          "rating2": 1.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00003CWT6",
-        "B00005JKCH"
-      ],
-      "titles": [
-        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
-        "Spider-Man (Widescreen Special Edition)"
-      ],
-      "train_support": 14,
-      "test_support": 29,
-      "confidence": 2.071
+      "rank": 24,
+      "products": {
+        "asin1": "0807281751",
+        "asin2": "0807286001",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1, Audio)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 195,
+      "confidence": 0.003914562171277151,
+      "sample_customers": [
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "6304286961",
-        "B00004YKSD"
-      ],
-      "titles": [
-        "The Doors",
-        "The Doors (2-Disc Special Edition)"
-      ],
-      "train_support": 68,
-      "test_support": 24,
-      "confidence": 0.353
+      "rank": 25,
+      "products": {
+        "asin1": "0807286001",
+        "asin2": "0939173344",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "title2": "Harry Potter and the Sorcerer's Stone",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 191,
+      "confidence": 0.003834263460071466,
+      "sample_customers": [
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "6304286961",
-        "B00005NB8K"
-      ],
-      "titles": [
-        "The Doors",
-        "The Doors (Special Edition)"
-      ],
-      "train_support": 68,
-      "test_support": 18,
-      "confidence": 0.265
+      "rank": 26,
+      "products": {
+        "asin1": "B000065U3Q",
+        "asin2": "B000069K5I",
+        "title1": "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
+        "title2": "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 190,
+      "confidence": 0.0038141887822700444,
+      "sample_customers": [
+        {
+          "customer_id": "A2T7C5ETCGV3UX",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A147M79UHMEBN5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JHTVDQF99AFQ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JHTVDQF99AFQ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2F89BTWLSEEKF",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "AVIZNHK4T0CA1",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1EV76DBSPEZJQ",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A1BHCE2409B5QF",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A39GMAVWZRJRLL",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1U4K6HBSI0F91",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00004YKSD",
-        "B00005NB8K"
-      ],
-      "titles": [
-        "The Doors (2-Disc Special Edition)",
-        "The Doors (Special Edition)"
-      ],
-      "train_support": 47,
-      "test_support": 15,
-      "confidence": 0.319
+      "rank": 27,
+      "products": {
+        "asin1": "B000067DNF",
+        "asin2": "B000069K5I",
+        "title1": "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)",
+        "title2": "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 174,
+      "confidence": 0.003492993937447304,
+      "sample_customers": [
+        {
+          "customer_id": "A2OD2NDOOW3WLL",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1SZBMWRIQ239R",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AFMH5BR1LZTGY",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AFMH5BR1LZTGY",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AGI3VJ0I04QO7",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "A13UFZZWOMZA6B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2R9J5LULVKF6T",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AG22VA23F3ZTE",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A136JX6OH2P4IO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A136JX6OH2P4IO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0790747324",
-        "B00004Z4U9"
-      ],
-      "titles": [
-        "The Time Machine",
-        "The Time Machine - Limited Edition Collector's Set"
-      ],
-      "train_support": 72,
-      "test_support": 13,
-      "confidence": 0.181
+      "rank": 28,
+      "products": {
+        "asin1": "B000065U3Q",
+        "asin2": "B000067DNF",
+        "title1": "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
+        "title2": "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 174,
+      "confidence": 0.003492993937447304,
+      "sample_customers": [
+        {
+          "customer_id": "A2ZP2QKRQF698F",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2ZP2QKRQF698F",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AYYOPF6RG019D",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A29ZVHXTGJ1IGY",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "APDHKB7LMA8WL",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "APDHKB7LMA8WL",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A46A1LOTVJ5PL",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3IKFLZLKO5MWW",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AVKNDVB68PN52",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "A1HJZL0WKCOTSF",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "B00004Z4U9",
-        "B000056BRE"
-      ],
-      "titles": [
-        "The Time Machine - Limited Edition Collector's Set",
-        "The Time Machine"
-      ],
-      "train_support": 55,
-      "test_support": 13,
-      "confidence": 0.236
+      "rank": 29,
+      "products": {
+        "asin1": "043936213X",
+        "asin2": "0807281751",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 172,
+      "confidence": 0.0034528445818444616,
+      "sample_customers": [
+        {
+          "customer_id": "A2IKXPAT65M8O6",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3AZWA3OP60JWV",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2VS8DDJVSYS2Q",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1DOHAYUGW8UT0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2L1QCK8AAZ7NW",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1VNLC0PH758BH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3TGNIQ0R3V6L7",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A187G15OMVY4UO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A187G15OMVY4UO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ASNN39G61VZKZ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671047337",
-        "B0000667EU"
-      ],
-      "titles": [
-        "Separation of Power (Mitch Rapp Novels)",
-        "Separation of Power"
-      ],
-      "train_support": 32,
-      "test_support": 12,
-      "confidence": 0.375
+      "rank": 30,
+      "products": {
+        "asin1": "B00003CWT6",
+        "asin2": "B000069K5I",
+        "title1": "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "title2": "The Lord of the Rings - The Fellowship of the Ring (Special Extended Edition)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 171,
+      "confidence": 0.00343276990404304,
+      "sample_customers": [
+        {
+          "customer_id": "A3HBAWR2OAWTM0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7GSGC0G8R6PW",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2TJZ21KBMKMX4",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3T8G3FN3H3948",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "AWEYTM1JATZO9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3FZGQPFOESL7J",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2WCU3K4019FPR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JD8FDS3CO3GH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7JNE4U6W2HNP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2KGS8AU93HQQH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0784010528",
-        "B00005NB8K"
-      ],
-      "titles": [
-        "The Doors",
-        "The Doors (Special Edition)"
-      ],
-      "train_support": 58,
-      "test_support": 11,
-      "confidence": 0.19
+      "rank": 31,
+      "products": {
+        "asin1": "B00003CWT6",
+        "asin2": "B000065U3Q",
+        "title1": "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "title2": "The Lord of the Rings - The Fellowship of the Ring (Full Screen Edition)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 171,
+      "confidence": 0.00343276990404304,
+      "sample_customers": [
+        {
+          "customer_id": "A3HBAWR2OAWTM0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3HBAWR2OAWTM0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7GSGC0G8R6PW",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2TJZ21KBMKMX4",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3T8G3FN3H3948",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "AWEYTM1JATZO9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3FZGQPFOESL7J",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2WCU3K4019FPR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JD8FDS3CO3GH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7JNE4U6W2HNP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0784010528",
-        "B00004YKSD"
-      ],
-      "titles": [
-        "The Doors",
-        "The Doors (2-Disc Special Edition)"
-      ],
-      "train_support": 55,
-      "test_support": 11,
-      "confidence": 0.2
+      "rank": 32,
+      "products": {
+        "asin1": "B00003CWT6",
+        "asin2": "B000067DNF",
+        "title1": "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)",
+        "title2": "The Lord of the Rings - The Fellowship of the Ring (Platinum Series Special Extended Edition)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 171,
+      "confidence": 0.00343276990404304,
+      "sample_customers": [
+        {
+          "customer_id": "A3HBAWR2OAWTM0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7GSGC0G8R6PW",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2TJZ21KBMKMX4",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3T8G3FN3H3948",
+          "rating1": 2.0,
+          "rating2": 2.0
+        },
+        {
+          "customer_id": "AWEYTM1JATZO9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3FZGQPFOESL7J",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2WCU3K4019FPR",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JD8FDS3CO3GH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7JNE4U6W2HNP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2KGS8AU93HQQH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0790747324",
-        "B000056BRE"
-      ],
-      "titles": [
-        "The Time Machine",
-        "The Time Machine"
-      ],
-      "train_support": 74,
-      "test_support": 10,
-      "confidence": 0.135
+      "rank": 33,
+      "products": {
+        "asin1": "0590353403",
+        "asin2": "0807281751",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 170,
+      "confidence": 0.0034126952262416186,
+      "sample_customers": [
+        {
+          "customer_id": "A6MQHG8J0N0X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ER76CJLJTI75",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1KAJPR058EA1R",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3RO5NF0U4QJ38",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A3Q78GKY14MQ1",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A244D7MGOADGS5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2AH6P2H5PM0BF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A28LH4UZ7I6JIU",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671047337",
-        "0671047345"
-      ],
-      "titles": [
-        "Separation of Power (Mitch Rapp Novels)",
-        "Separation of Power"
-      ],
-      "train_support": 27,
-      "test_support": 10,
-      "confidence": 0.37
+      "rank": 34,
+      "products": {
+        "asin1": "043936213X",
+        "asin2": "0939173344",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 168,
+      "confidence": 0.003372545870638776,
+      "sample_customers": [
+        {
+          "customer_id": "A21VODT9DFEOFX",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JSDV57XPD937",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A39476Z41H9VK3",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A35CXYRRXHOFRH",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A3B8JB0HO5S9JM",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A3B8JB0HO5S9JM",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A16TS3Z2JJTPBP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A22313DRNDMOYB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A22313DRNDMOYB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A18DI33H6833XV",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0784010528",
-        "6304286961"
-      ],
-      "titles": [
-        "The Doors",
-        "The Doors"
-      ],
-      "train_support": 78,
-      "test_support": 7,
-      "confidence": 0.09
+      "rank": 35,
+      "products": {
+        "asin1": "0590353403",
+        "asin2": "0939173344",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 166,
+      "confidence": 0.0033323965150359337,
+      "sample_customers": [
+        {
+          "customer_id": "A6MQHG8J0N0X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ER76CJLJTI75",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1KAJPR058EA1R",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3RO5NF0U4QJ38",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A3Q78GKY14MQ1",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A244D7MGOADGS5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2AH6P2H5PM0BF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A28LH4UZ7I6JIU",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671047345",
-        "0743509315"
-      ],
-      "titles": [
-        "Separation of Power",
-        "Separation Of Power"
-      ],
-      "train_support": 34,
-      "test_support": 7,
-      "confidence": 0.206
+      "rank": 36,
+      "products": {
+        "asin1": "0786222727",
+        "asin2": "0807281751",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1, Large Print)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1, Audio)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 165,
+      "confidence": 0.003312321837234512,
+      "sample_customers": [
+        {
+          "customer_id": "AT4L69GQ1XE7K",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671047345",
-        "0743509307"
-      ],
-      "titles": [
-        "Separation of Power",
-        "Separation Of Power"
-      ],
-      "train_support": 25,
-      "test_support": 6,
-      "confidence": 0.24
+      "rank": 37,
+      "products": {
+        "asin1": "043936213X",
+        "asin2": "0786222727",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1, Large Print)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 164,
+      "confidence": 0.003292247159433091,
+      "sample_customers": [
+        {
+          "customer_id": "A2IKXPAT65M8O6",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3AZWA3OP60JWV",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2VS8DDJVSYS2Q",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1DOHAYUGW8UT0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2L1QCK8AAZ7NW",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1VNLC0PH758BH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3TGNIQ0R3V6L7",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A187G15OMVY4UO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A187G15OMVY4UO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ASNN39G61VZKZ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671047345",
-        "B0000667EU"
-      ],
-      "titles": [
-        "Separation of Power",
-        "Separation of Power"
-      ],
-      "train_support": 25,
-      "test_support": 6,
-      "confidence": 0.24
+      "rank": 38,
+      "products": {
+        "asin1": "043936213X",
+        "asin2": "0807286001",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 163,
+      "confidence": 0.0032721724816316697,
+      "sample_customers": [
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 2.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0743509307",
-        "0743509315"
-      ],
-      "titles": [
-        "Separation Of Power",
-        "Separation Of Power"
-      ],
-      "train_support": 40,
-      "test_support": 5,
-      "confidence": 0.125
+      "rank": 39,
+      "products": {
+        "asin1": "0590353403",
+        "asin2": "0786222727",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1, Large Print)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 163,
+      "confidence": 0.0032721724816316697,
+      "sample_customers": [
+        {
+          "customer_id": "AT4L69GQ1XE7K",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 3.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0743509315",
-        "B0000667EU"
-      ],
-      "titles": [
-        "Separation Of Power",
-        "Separation of Power"
-      ],
-      "train_support": 39,
-      "test_support": 4,
-      "confidence": 0.103
+      "rank": 40,
+      "products": {
+        "asin1": "043936213X",
+        "asin2": "0590353403",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 163,
+      "confidence": 0.0032721724816316697,
+      "sample_customers": [
+        {
+          "customer_id": "A6MQHG8J0N0X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ER76CJLJTI75",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1KAJPR058EA1R",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3RO5NF0U4QJ38",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A244D7MGOADGS5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2AH6P2H5PM0BF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A28LH4UZ7I6JIU",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ADAC0SO0NTU3T",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671047337",
-        "0743509315"
-      ],
-      "titles": [
-        "Separation of Power (Mitch Rapp Novels)",
-        "Separation Of Power"
-      ],
-      "train_support": 38,
-      "test_support": 4,
-      "confidence": 0.105
+      "rank": 41,
+      "products": {
+        "asin1": "0786222727",
+        "asin2": "0939173344",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1, Large Print)",
+        "title2": "Harry Potter and the Sorcerer's Stone",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 162,
+      "confidence": 0.0032520978038302487,
+      "sample_customers": [
+        {
+          "customer_id": "AT4L69GQ1XE7K",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0743509307",
-        "B0000667EU"
-      ],
-      "titles": [
-        "Separation Of Power",
-        "Separation of Power"
-      ],
-      "train_support": 29,
-      "test_support": 4,
-      "confidence": 0.138
+      "rank": 42,
+      "products": {
+        "asin1": "0375432302",
+        "asin2": "0739302043",
+        "title1": "The Da Vinci Code",
+        "title2": "The Da Vinci Code",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 159,
+      "confidence": 0.0031918737704259847,
+      "sample_customers": [
+        {
+          "customer_id": "A3T70E9O6P0JXB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3IEGG7W5UHRF8",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3KO4TYPEYHUFP",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A2OLY4570HFVY3",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3U26IP8U4T5B4",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2JWHPMBCBFC9Z",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AIMH2ZCAL3WBK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A23UT0G0H63M6D",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3Q5J246P4YB8J",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A2MSWQW6L9X18O",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671047337",
-        "0743509307"
-      ],
-      "titles": [
-        "Separation of Power (Mitch Rapp Novels)",
-        "Separation Of Power"
-      ],
-      "train_support": 28,
-      "test_support": 4,
-      "confidence": 0.143
+      "rank": 43,
+      "products": {
+        "asin1": "0590353403",
+        "asin2": "0807286001",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 159,
+      "confidence": 0.0031918737704259847,
+      "sample_customers": [
+        {
+          "customer_id": "A6MQHG8J0N0X",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1ER76CJLJTI75",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1KAJPR058EA1R",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3RO5NF0U4QJ38",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A3Q78GKY14MQ1",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A244D7MGOADGS5",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A7C135SDAIZGE",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2AH6P2H5PM0BF",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A28LH4UZ7I6JIU",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0140445684",
-        "0140445706"
-      ],
-      "titles": [
-        "Capital : A Critique of Political Economy (Penguin Classics)",
-        "Capital: A Critique of Political Economy, Vol. 3 (Penguin Classics)"
-      ],
-      "train_support": 21,
-      "test_support": 4,
-      "confidence": 0.19
+      "rank": 44,
+      "products": {
+        "asin1": "0807281751",
+        "asin2": "0807281956",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1, Audio)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 158,
+      "confidence": 0.0031717990926245633,
+      "sample_customers": [
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0140445684",
-        "0140445692"
-      ],
-      "titles": [
-        "Capital : A Critique of Political Economy (Penguin Classics)",
-        "Capital : A Critique of Political Economy (Penguin Classics) (Volume 2)"
-      ],
-      "train_support": 18,
-      "test_support": 4,
-      "confidence": 0.222
+      "rank": 45,
+      "products": {
+        "asin1": "0739302043",
+        "asin2": "0739307312",
+        "title1": "The Da Vinci Code",
+        "title2": "The Da Vinci Code",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 158,
+      "confidence": 0.0031717990926245633,
+      "sample_customers": [
+        {
+          "customer_id": "A3T70E9O6P0JXB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3IEGG7W5UHRF8",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3KO4TYPEYHUFP",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A2OLY4570HFVY3",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3U26IP8U4T5B4",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2JWHPMBCBFC9Z",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "AIMH2ZCAL3WBK",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A23UT0G0H63M6D",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3Q5J246P4YB8J",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A2MSWQW6L9X18O",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671727737",
-        "0785773878"
-      ],
-      "titles": [
-        "The Eagle Has Landed",
-        "Eagle Has Landed"
-      ],
-      "train_support": 18,
-      "test_support": 3,
-      "confidence": 0.167
+      "rank": 46,
+      "products": {
+        "asin1": "043936213X",
+        "asin2": "0807281956",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 157,
+      "confidence": 0.0031517244148231423,
+      "sample_customers": [
+        {
+          "customer_id": "A2IKXPAT65M8O6",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A3AZWA3OP60JWV",
+          "rating1": 4.0,
+          "rating2": 4.0
+        },
+        {
+          "customer_id": "A2VS8DDJVSYS2Q",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1DOHAYUGW8UT0",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A2L1QCK8AAZ7NW",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1VNLC0PH758BH",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3TGNIQ0R3V6L7",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A187G15OMVY4UO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A187G15OMVY4UO",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ASNN39G61VZKZ",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0140445692",
-        "0140445706"
-      ],
-      "titles": [
-        "Capital : A Critique of Political Economy (Penguin Classics) (Volume 2)",
-        "Capital: A Critique of Political Economy, Vol. 3 (Penguin Classics)"
-      ],
-      "train_support": 16,
-      "test_support": 3,
-      "confidence": 0.188
+      "rank": 47,
+      "products": {
+        "asin1": "0786222727",
+        "asin2": "0807281956",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1, Large Print)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 157,
+      "confidence": 0.0031517244148231423,
+      "sample_customers": [
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 3.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0671023195",
-        "0743509315"
-      ],
-      "titles": [
-        "Transfer Of Power (Mitch Rapp Novels)",
-        "Separation Of Power"
-      ],
-      "train_support": 15,
-      "test_support": 2,
-      "confidence": 0.133
+      "rank": 48,
+      "products": {
+        "asin1": "0786222727",
+        "asin2": "0807286001",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1, Large Print)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 155,
+      "confidence": 0.0031115750592202993,
+      "sample_customers": [
+        {
+          "customer_id": "AT4L69GQ1XE7K",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A1RBXEISMJ0Y9B",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0790747324",
-        "B00003CWT6"
-      ],
-      "titles": [
-        "The Time Machine",
-        "The Lord of the Rings - The Fellowship of the Ring (Widescreen Edition)"
-      ],
-      "train_support": 14,
-      "test_support": 2,
-      "confidence": 0.143
+      "rank": 49,
+      "products": {
+        "asin1": "0807281956",
+        "asin2": "0939173344",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "title2": "Harry Potter and the Sorcerer's Stone",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 155,
+      "confidence": 0.0031115750592202993,
+      "sample_customers": [
+        {
+          "customer_id": "A21VODT9DFEOFX",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A10J8HE0W0OPV9",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JSDV57XPD937",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A3JSDV57XPD937",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A25W2CE5ROCBIP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A39476Z41H9VK3",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A35CXYRRXHOFRH",
+          "rating1": 1.0,
+          "rating2": 1.0
+        },
+        {
+          "customer_id": "A3B8JB0HO5S9JM",
+          "rating1": 3.0,
+          "rating2": 3.0
+        },
+        {
+          "customer_id": "A16TS3Z2JJTPBP",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "A22313DRNDMOYB",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     },
     {
-      "products": [
-        "0425177181",
-        "0671727737"
-      ],
-      "titles": [
-        "The Eagle Has Landed",
-        "The Eagle Has Landed"
-      ],
-      "train_support": 14,
-      "test_support": 1,
-      "confidence": 0.071
+      "rank": 50,
+      "products": {
+        "asin1": "0590353403",
+        "asin2": "0807281956",
+        "title1": "Harry Potter and the Sorcerer's Stone (Book 1)",
+        "title2": "Harry Potter and the Sorcerer's Stone (Book 1 Audio CD)",
+        "avgRating1": null,
+        "avgRating2": null
+      },
+      "support": 154,
+      "confidence": 0.0030915003814188783,
+      "sample_customers": [
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 3.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        },
+        {
+          "customer_id": "ATVPDKIKX0DER",
+          "rating1": 5.0,
+          "rating2": 5.0
+        }
+      ]
     }
   ]
 }

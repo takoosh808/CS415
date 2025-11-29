@@ -1,95 +1,240 @@
 Project Statement for Milestone 4
+
 Team Baddie
 Brian Leung, Cayden Calo, Jeremiah Carlo Miguel, Travis Takushi
 
-================================================================================
 1. USER INTERFACE AND DATA VISUALIZATION
-================================================================================
+1.a User Interface Description
 
-1.a Describe the user interface and data visualization components of the software.
-- GUI: Python Tkinter with 2 tabs (Complex Queries, Pattern Mining).
-- Visualizations: Embedded Matplotlib charts in Pattern Mining tab.
-  - Dual charts: Total Support (top) and Confidence (bottom).
-  - Displays top patterns with product names, support, confidence.
-- Interactivity: Fully typeable filters for queries (group, min/max rating, min/max reviews, min/max sales rank, limit) with buttons (Execute Query, Clear All). Pattern Mining provides two modes (Load Pre‑Generated Results, Mine Patterns Now) with dual‑panel charts.
+Our team developed a full desktop GUI application using Python Tkinter (gui_simple.py). The interface is structured into two tabs, each supporting interactive user workflows and visualizations.
 
-================================================================================
+Tab 1 — Complex Product Queries
+
+Features:
+
+Interactive query form supporting:
+
+Product group (Book / DVD / Music / Video)
+
+Min/max rating
+
+Min/max review count
+
+Min/max sales rank
+
+Result limit (k)
+
+Automatic validation and exclusion of low-quality or missing data.
+
+Buttons:
+
+Execute Query — dynamically constructs and runs Cypher against Neo4j
+
+Clear All — reset all fields
+
+Output displayed in a scrollable results panel (title, ASIN, rating, reviews, salesrank).
+
+Real-time status updates in a persistent bottom status bar.
+
+Tab 2 — Co-Purchase Pattern Mining
+
+Features:
+
+Left panel: Sortable top-50 co-purchase pattern table (support, confidence, product titles).
+
+Middle visualization:
+Embedded Matplotlib bar charts:
+
+Support of top 20 patterns
+
+Confidence of top 20 patterns
+
+Right panel (pattern details):
+
+Product metadata
+
+Ratings and titles
+
+Sample customers (10 per pattern)
+
+Two pie-chart visualizations showing rating distributions for the two products in the selected pattern.
+
+“Load Patterns” button loads pregenerated results from gui_patterns.json instantly.
+
+Visualization Components
+
+Implemented using Matplotlib embedded via FigureCanvasTkAgg.
+
+Visualization types:
+
+Bar charts (support, confidence)
+
+Pie charts (rating distribution)
+
+Consistent formatting and responsive layout.
+
 2. USER QUERIES AND RESULTS
-================================================================================
 
-2.a Provide user queries and their results to describe functionality.
-- Query 1: High‑Rated DVDs
-  - Conditions: group='DVD', min_rating=4.5, min_reviews=50, k=20
-  - Time: ~1.23s | Result: 20 DVDs (limit), avg rating ~4.7
+Below are representative examples demonstrating the functionality and performance of the system.
 
-- Query 2: Popular Books
-  - Conditions: group='Book', min_reviews=100, k=20
-  - Time: ~1.47s | Result: 20 books (limit), top has >1,100 reviews
-
-- Query 3: Top Music Albums
-  - Conditions: group='Music', min_rating=4.0, max_salesrank=100000, k=20
-  - Time: ~1.35s | Result: 20 albums (limit), avg rating ~4.6
-
-- Query 4: Highest Rated (All)
-  - Conditions: min_rating=4.8, min_reviews=20, k=30
-  - Time: ~1.18s | Result: 28 products, Books dominate
-
-- Query 5: Excellent Sales Performance
-  - Conditions: max_salesrank=10000, min_rating=4.0, k=50
-  - Time: ~1.29s | Result: 50 products (limit), avg rating ~4.4
-
-================================================================================
+Query	Conditions	Time	Results
+High-Rated DVDs	group='DVD', min_rating=4.5, min_reviews=50, k=20	~1.23s	20 DVDs, avg rating ≈ 4.7
+Popular Books	group='Book', min_reviews=100, k=20	~1.47s	20 books, top >1,100 reviews
+Top Music Albums	group='Music', min_rating=4.0, max_salesrank=100000, k=20	~1.35s	20 albums, avg rating ≈ 4.6
+Highest Rated Overall	min_rating=4.8, min_reviews=20, k=30	~1.18s	28 total products (Books dominate)
+Excellent Sales Performance	max_salesrank=10000, min_rating=4.0, k=50	~1.29s	50 products, avg rating ≈ 4.4
 3. SCALABILITY
-================================================================================
+3.a Neo4j NoSQL Cluster Storage & Performance
+Cluster Configuration
 
-3.a NoSQL cluster storage and benchmarks; compare with non‑cluster.
-- Database: Neo4j 4.4 Enterprise, 3‑core causal cluster.
-- Storage Model (per core, replicated):
-  - Nodes: Product 548,552; Customer 1,555,170; Category 26,057.
-  - Relationships: REVIEWED 7,593,244; BELONGS_TO 12,964,535; SIMILAR 1,231,439.
-- Ingestion (Bulk LOAD CSV):
-  - Single node (Community): 551.3s total (23.9M elements, 43,386 elems/s).
-  - Enterprise cluster (3 cores, writes to LEADER): 1,523.5s per core; 71.7M total elements written (replication). Effective total throughput ≈ 47,094 elems/s (~108% of single when accounting for 3x copies).
-- Query performance (Enterprise cluster):
-  - Simple top‑rated query (~100 results): ≈21.4s, <0.5% variance across cores.
-  - Heavy aggregation (~50 results): ≈392s avg, <5% variance.
-- Comparison: Single node faster for ingestion (no replication). Enterprise offers redundancy, HA, and consistent read scalability with near‑identical performance across cores.
+Neo4j Enterprise 4.4, 3-core causal cluster (1 Leader, 2 Followers)
 
-3.b Hadoop/Spark cluster configuration and benchmarks; comparison.
-- Implementation: PySpark 3.5.3 in local[*] mode with Neo4j Connector for Spark (org.neo4j:neo4j-connector-apache-spark_2.12:5.3.0_for_spark_3).
-- Architecture: Direct data loading from Neo4j cluster into Spark DataFrames via connector, eliminating Python driver overhead.
-- Algorithms: 
-  - FP‑Growth (Spark MLlib) for frequent itemset mining on full dataset.
-  - Distributed aggregation and filtering via Spark SQL.
-- Benchmarks (local mode with Neo4j Connector):
-  - Data loading: 7.6M reviews loaded from Neo4j in ~45s (169k reviews/sec).
-  - Transaction creation: 1.5M customer transactions grouped in ~30s.
-  - FP‑Growth mining: Full dataset (min_support=0.001) completes in ~2-3 minutes.
-  - Pattern validation: Cross-validation of top 50 patterns in test set in ~20s.
-- Comparison: Neo4j Connector enables processing 3,000x more customers (1.5M vs 500) with 50-100x speedup due to:
-  - Parallel data loading (vs sequential Python driver queries).
-  - Distributed Spark operations (vs single-threaded Python loops).
-  - Native FP-Growth implementation (vs manual pair counting).
+Data is Raft-replicated across all cores.
 
-3.c Hardware used for scalability tests.
-- Device: DESKTOP-TP7B022 (ThinkPad)
-- CPU: AMD Ryzen 7 5700U with Radeon Graphics (1.80 GHz)
-- RAM: 16.0 GB (14.8 GB usable)
-- System: 64-bit OS, x64-based processor
-- OS: Windows 11 Pro
-- Docker: Docker Desktop for Windows (WSL2) running Neo4j cluster containers
+Dataset Loaded into the Cluster
 
-================================================================================
+Nodes:
+
+Products: 548,552
+
+Customers: 1,555,170
+
+Categories: 26,057
+
+Relationships:
+
+REVIEWED: 7,593,244
+
+BELONGS_TO: 12,964,535
+
+SIMILAR: 1,231,439
+
+Cluster Ingestion Performance (LOAD CSV, Replicated Write)
+
+Total ingestion time: ~2,110 seconds (~35.2 minutes)
+
+Examples:
+
+Products: 53.9s (10,169/sec)
+
+BELONGS_TO: 843.0s (15,379/sec)
+
+REVIEWED: 1,016.7s (7,468/sec)
+
+Throughput:
+
+~11,335 elements/sec (nodes + relationships)
+
+Replication to all 3 cores increases reliability but slows ingestion.
+
+Single-Node Neo4j Performance (neo4j-admin import)
+
+(Required Section 5 information has been merged here)
+
+Configuration: Neo4j Enterprise 4.4.46, Java 11, 12.7GB RAM, SSD
+
+Bulk import time: 111 seconds
+
+Throughput:
+
+Nodes: 19,188/sec
+
+Relationships: 196,300/sec
+
+Total: 215,488 elements/sec
+
+Peak RAM: 1.05 GB
+
+Result:
+Single-node bulk import is 16–32× faster than cluster LOAD CSV due to no Raft replication.
+
+Query Performance (Cluster)
+
+Simple query (~100 results): ~21.4s
+
+Heavy aggregation (top patterns, tens of millions of edges): ~392s avg
+
+<5% performance variation across cores due to distributed read load.
+
+Cluster vs Single-Node Summary
+Metric	Single-Node	3-Core Cluster
+Ingestion	Fastest (111s)	Much slower (2,110s) due to replication
+Query Throughput	Moderate	Better distributed read performance
+Fault Tolerance	None	High Availability
+Best For	Analytics, development	Production, scalable reads
+3.b Spark / Hadoop Cluster Algorithms & Benchmarks
+Spark Environment
+
+PySpark 4.0.1 (local[*])
+
+Neo4j Connector for Apache Spark 5.3.1
+
+Java 21
+
+Reads automatically distributed across all 3 Neo4j cores.
+
+Data Loading from Neo4j Cluster
+
+7.59M REVIEWED rows
+
+Load time: 307.48s
+
+Throughput: 24,695 reviews/sec
+
+Transaction Construction
+
+810,216 unique customer transactions
+
+Reduced to 49,763 (6.2%) via sampling
+
+Ensured uniqueness with collect_set
+
+FP-Growth Pattern Mining
+
+Parameters:
+
+min_support = 0.002
+
+min_confidence = 0.1
+
+Results:
+
+Mining time: 110.61s
+
+67 frequent itemsets
+
+134 association rules
+
+Strong patterns validated in test set (400+ support)
+
+Full Pipeline Time
+
+≈ 418 seconds
+(Load → Mine → Validate → Enrich)
+
+Advantages of Using Spark + Neo4j Connector
+
+Analyzes 100× more transactions than Python driver version
+
+Avoids memory crashes (DISK_ONLY caching)
+
+Distributed reads across entire Neo4j cluster
+
+Automatic load balancing and HA support
+
+3.c Hardware Used
+
+Laptop: ThinkPad / DESKTOP-TP7B022
+
+CPU: AMD Ryzen 7 5700U (8 cores, 1.80GHz)
+
+RAM: 16 GB
+
+Disk: SSD
+
+OS: Windows 11 Pro
+
+Cluster Deployment: Docker Desktop + WSL2 running 3 Neo4j Enterprise nodes
+
 4. SOURCE CODE
-================================================================================
-
-4.a Application prototype source code (ZIP provided separately, dataset excluded).
-- GUI: `gui_app.py` (Tkinter + Matplotlib).
-- Data ingestion: `scripts/stream_load_full.py`, `scripts/bulk_load_replicated.py`.
-- Query algorithms: `scripts/run_algorithms_full.py`, `scripts/spark_query_algorithm.py`.
-- Pattern mining: 
-  - `scripts/copurchase_pattern_mining.py` (Python + Neo4j driver, sampled).
-  - `scripts/spark_pattern_mining.py` (PySpark FP-Growth, local mode).
-  - `scripts/spark_neo4j_pattern_mining.py` (Neo4j Connector for Spark, full dataset).
-- Precomputed results: `scripts/pregenerate_results.py` → `gui_results.json`.
-- Note: ZIP archive of source code (excluding CSV/data) accompanies this submission.
+Provided in ZIP
