@@ -1,0 +1,5 @@
+sudo systemctl start neo4j-node1 neo4j-node2 neo4j-node3
+
+sudo systemctl status neo4j-node1 neo4j-node2 neo4j-node3 --no-pager
+
+sudo systemctl stop neo4j-node1 neo4j-node2 neo4j-node3
