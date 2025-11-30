@@ -378,7 +378,7 @@ class AmazonAnalyticsGUI:
         
         # Sample customers
         samples = pattern.get('sample_customers', [])
-        self.pattern_details.insert(tk.END, f"Sample Customers ({len(samples)}):\n")
+        self.pattern_details.insert(tk.END, f"Sample Customers:\n")
         for i, customer in enumerate(samples[:5], 1):
             self.pattern_details.insert(tk.END, f"  {i}. Customer {customer['customer_id']}: ")
             self.pattern_details.insert(tk.END, f"Rating1={customer['rating1']:.1f}, Rating2={customer['rating2']:.1f}\n")
