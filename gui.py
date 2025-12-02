@@ -137,7 +137,9 @@ class AmazonAnalyticsGUI:
         left_panel = ttk.Frame(main_frame)
         left_panel.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         
-        ttk.Label(left_panel, text="Top 50 Patterns", font=('Arial', 12, 'bold')).pack(pady=5)
+        # Label that will be updated with pattern count
+        self.pattern_count_label = ttk.Label(left_panel, text="Patterns", font=('Arial', 12, 'bold'))
+        self.pattern_count_label.pack(pady=5)
         
         # Treeview for patterns
         columns = ('Rank', 'Product 1', 'Product 2', 'Support', 'Confidence')
@@ -318,9 +320,18 @@ class AmazonAnalyticsGUI:
             for item in self.pattern_tree.get_children():
                 self.pattern_tree.delete(item)
             
-            # Populate tree
+            # Populate tree with ALL patterns
             patterns = self.patterns_data.get('patterns', [])
-            for pattern in patterns:
+            total_patterns = len(patterns)
+            
+            # Update the label to show actual count
+            self.pattern_count_label.config(text=f"All {total_patterns:,} Patterns")
+            
+            self.status_bar.config(text=f"Loading {total_patterns:,} patterns...")
+            self.root.update()
+            
+            # Insert all patterns into the tree
+            for i, pattern in enumerate(patterns, 1):
                 rank = pattern['rank']
                 title1 = pattern['products']['title1'][:40]
                 title2 = pattern['products']['title2'][:40]
@@ -328,9 +339,14 @@ class AmazonAnalyticsGUI:
                 confidence = f"{pattern['confidence']:.4f}"
                 
                 self.pattern_tree.insert('', tk.END, values=(rank, title1, title2, support, confidence))
+                
+                # Update progress for large datasets
+                if i % 100 == 0:
+                    self.status_bar.config(text=f"Loading patterns... {i:,}/{total_patterns:,}")
+                    self.root.update()
             
-            self.status_bar.config(text=f"Loaded {len(patterns)} patterns")
-            messagebox.showinfo("Success", f"Loaded {len(patterns)} co-purchase patterns")
+            self.status_bar.config(text=f"Loaded {total_patterns:,} patterns")
+            messagebox.showinfo("Success", f"Loaded {total_patterns:,} co-purchase patterns")
             
             # Display overview charts
             self.display_overview_charts()

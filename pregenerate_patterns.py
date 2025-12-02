@@ -18,14 +18,15 @@ class PatternPregeneration:
             .config("neo4j.url", neo4j_uri) \
             .config("neo4j.authentication.basic.username", neo4j_user) \
             .config("neo4j.authentication.basic.password", neo4j_password) \
-            .config("spark.driver.memory", "4g") \
-            .config("spark.executor.memory", "4g") \
-            .config("spark.sql.shuffle.partitions", "4") \
-            .config("spark.default.parallelism", "4") \
+            .config("spark.driver.memory", "8g") \
+            .config("spark.executor.memory", "8g") \
+            .config("spark.sql.shuffle.partitions", "8") \
+            .config("spark.default.parallelism", "8") \
             .config("spark.sql.adaptive.enabled", "true") \
-            .config("spark.driver.maxResultSize", "2g") \
-            .config("spark.memory.fraction", "0.6") \
-            .config("spark.memory.storageFraction", "0.2") \
+            .config("spark.driver.maxResultSize", "4g") \
+            .config("spark.memory.fraction", "0.8") \
+            .config("spark.memory.storageFraction", "0.3") \
+            .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer") \
             .getOrCreate()
         
         self.neo4j_uri = neo4j_uri
@@ -66,7 +67,8 @@ class PatternPregeneration:
                                max_items_per_customer=30, max_transactions=50000):
         """Mine patterns using FP-Growth with memory optimization"""
         print("="*70)
-        
+        print("MINING FREQUENT CO-PURCHASE PATTERNS")
+        print("="*70)
         
         start_time = time.time()
         
@@ -94,8 +96,11 @@ class PatternPregeneration:
         # Run FP-Growth
         print(f"\nRunning FP-Growth algorithm...")
         print(f"  Min Support: {min_support} ({int(min_support * num_transactions)} transactions)")
+        
+        fpGrowth = FPGrowth(
             itemsCol="items", 
             minSupport=min_support, 
+            minConfidence=min_confidence
         )
         
         model = fpGrowth.fit(transactions)
@@ -106,12 +111,14 @@ class PatternPregeneration:
         association_rules = model.associationRules
         
         # Get frequent pairs
+        pair_patterns = frequent_itemsets.filter(size(col("items")) == 2) \
             .orderBy(col("freq").desc())
         
-        
-                    transactions.persist(StorageLevel.DISK_ONLY)
+        transactions.persist(StorageLevel.DISK_ONLY)
+        elapsed = time.time() - start_time
         print(f"\n✓ Pattern mining complete in {elapsed:.2f}s")
         
+        return {
             'itemsets': pair_patterns,
             'rules': association_rules,
             'transactions': transactions,
@@ -120,10 +127,11 @@ class PatternPregeneration:
         }
     
     def get_sample_customers(self, reviews_df, product1, product2, limit=10):
+        """Get sample customers who bought both products"""
         
         # Filter for customers who bought both products
         customers_with_p1 = reviews_df.filter(col("product_id") == product1) \
-        
+            .select("customer_id", col("rating").alias("rating1"))
         
         customers_with_p2 = reviews_df.filter(col("product_id") == product2) \
             .select("customer_id", col("rating").alias("rating2"))
@@ -132,7 +140,8 @@ class PatternPregeneration:
         both = customers_with_p1.join(customers_with_p2, "customer_id") \
             .limit(limit)
         
-        
+        samples = []
+        for row in both.collect():
             samples.append({
                 'customer_id': row['customer_id'],
                 'rating1': float(row['rating1']),
@@ -141,16 +150,24 @@ class PatternPregeneration:
         
         return samples
     
-    def enrich_patterns_with_product_info(self, patterns, reviews_df, top_n=50):
+    def enrich_patterns_with_product_info(self, patterns, reviews_df):
         """Fetch product titles and get sample customers for each pattern"""
-        print(f"\nEnriching top {top_n} patterns with product details and sample customers...")
+        
+        # First get the total count of patterns
+        total_patterns = patterns['itemsets'].count()
+        print(f"\nFound {total_patterns:,} total frequent patterns")
+        print(f"Enriching all {total_patterns:,} patterns with product details and sample customers...")
         
         enriched = []
         
-        for i, itemset_row in enumerate(patterns['itemsets'].limit(top_n).collect(), 1):
+        for i, itemset_row in enumerate(patterns['itemsets'].collect(), 1):
             products = sorted(itemset_row['items'])
             support = itemset_row['freq']
             confidence = support / patterns['num_transactions']
+            
+            # Show progress
+            if i == 1 or i % 10 == 0 or i == total_patterns:
+                print(f"  [{i:,}/{total_patterns:,}] Processing pattern: {products[0][:15]}... & {products[1][:15]}...")
             
             # Query Neo4j for product details
             product_df = self.spark.read.format("org.neo4j.spark.DataSource") \
@@ -162,7 +179,7 @@ class PatternPregeneration:
                     WHERE p.asin IN ['{products[0]}', '{products[1]}']
                     RETURN p.asin as asin, p.title as title, p.avgRating as avgRating
                 """) \
-        
+                .load()
             
             product_info = {}
             for row in product_df.collect():
@@ -189,10 +206,7 @@ class PatternPregeneration:
                 'sample_customers': sample_customers
             })
             
-            if i % 10 == 0:
-                print(f"  Processed {i}/{top_n} patterns...")
-        
-        print(f"✓ Enriched {len(enriched)} patterns\n")
+        print(f"✓ Enriched {len(enriched):,} patterns\n")
         
         return enriched
     
@@ -205,14 +219,13 @@ class PatternPregeneration:
             'metadata': {
                 'generated_at': time.strftime('%Y-%m-%d %H:%M:%S'),
                 'total_patterns': len(enriched_patterns),
-                'algorithm': 'FP-Growth (Spark MLlib)',
-                            pass
+                'algorithm': 'FP-Growth (Spark MLlib)'
             },
-        
+            'patterns': enriched_patterns
         }
         
         with open(output_file, 'w', encoding='utf-8') as f:
-        
+            json.dump(output, f, indent=2, ensure_ascii=False)
         
         print(f"✓ Results saved to {output_file}\n")
     
@@ -225,22 +238,32 @@ class PatternPregeneration:
         for pattern in enriched_patterns[:top_n]:
             print(f"\n{pattern['rank']}. Support: {pattern['support']:,} | "
                   f"Confidence: {pattern['confidence']:.4f}")
-            print(f"   Product 1: {pattern['products']['title1'][:60]}")
-        
-                  f"Avg Rating: {pattern['products']['avgRating1']:.2f})" 
-        
-                  f"Avg Rating: {pattern['products']['avgRating2']:.2f})"
-                        print(f"{pattern['rank']}. Support: {pattern['support']}, Confidence: {pattern['confidence']:.4f}")
-                        print(f"   Product 1: {pattern['products']['title1']}")
-                        print(f"   Product 2: {pattern['products']['title2']}")
-                        print(f"   Sample Customers: {len(pattern['sample_customers'])}")
+            
+            rating1 = pattern['products']['avgRating1']
+            rating1_str = f"{rating1:.2f}" if rating1 is not None else "N/A"
+            rating2 = pattern['products']['avgRating2']
+            rating2_str = f"{rating2:.2f}" if rating2 is not None else "N/A"
+            
+            print(f"   Product 1: {pattern['products']['title1'][:60]} "
+                  f"(Avg Rating: {rating1_str})")
+            print(f"   Product 2: {pattern['products']['title2'][:60]} "
+                  f"(Avg Rating: {rating2_str})")
+            print(f"   Sample Customers: {len(pattern['sample_customers'])}")
+    def close(self):
+        """Clean up resources"""
+        if self.spark:
+            self.spark.stop()
+
 def main():
     """Main execution function"""
     print("="*70)
-                        self.spark.stop()
+    print("PREGENERATE PATTERN MINING RESULTS")
+    print("="*70)
     print()
     
-    
+    miner = PatternPregeneration(
+        neo4j_uri="bolt://localhost:7687",
+        neo4j_user="neo4j",
         neo4j_password="Password"
     )
     
@@ -251,20 +274,19 @@ def main():
         # Mine patterns
         patterns = miner.mine_patterns_fpgrowth(
             reviews_df,
-            min_support=0.002,  # 0.2%
+            min_support=0.0005,  # 0.05% - lower threshold for more patterns
             min_confidence=0.1,
-            max_items_per_customer=30,
-            max_transactions=50000
+            max_items_per_customer=20,  # Reduced from 30 to optimize memory
+            max_transactions=2000000  # Allow up to 2M transactions (all data)
         )
         
         # Enrich with product info and sample customers
         enriched_patterns = miner.enrich_patterns_with_product_info(
             patterns, 
-            reviews_df, 
-            top_n=50
+            reviews_df
         )
         
-                    print(f"Error: {e}")
+        # Display sample patterns
         miner.display_sample_patterns(enriched_patterns, top_n=10)
         
         # Save results
@@ -278,7 +300,7 @@ def main():
         print()
         
     except Exception as e:
-        print(f"\n Error: {e}")
+        print(f"\nError: {e}")
         import traceback
         traceback.print_exc()
     
