@@ -41,10 +41,10 @@ def benchmark_on_node(spark, node_uri, node_name):
         .option("query", """
             MATCH (cat:Category)<-[:BELONGS_TO]-(p:Product)
             RETURN cat.name as category, count(p) as products
-            ORDER BY products DESC
-            LIMIT 50
         """) \
         .load()
+    # Apply Spark operations for ordering and limiting
+    category_df = category_df.orderBy(desc("products")).limit(50)
     count = category_df.count()
     elapsed = time.time() - start
     results['Category Analysis'] = {'time': round(elapsed, 3), 'count': count}
@@ -71,10 +71,10 @@ def benchmark_on_node(spark, node_uri, node_name):
             MATCH (c:Customer)-[r:REVIEWED]->(p:Product)
             WHERE r.rating >= 4
             RETURN c.id as customer, count(r) as reviews
-            ORDER BY reviews DESC
-            LIMIT 100
         """) \
         .load()
+    # Apply Spark operations for ordering and limiting
+    reviews_df = reviews_df.orderBy(desc("reviews")).limit(100)
     count = reviews_df.count()
     elapsed = time.time() - start
     results['Customer Reviews'] = {'time': round(elapsed, 3), 'count': count}
