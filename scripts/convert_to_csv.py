@@ -1,8 +1,7 @@
 import csv
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from src.data_processing.parser import parse_amazon_data
+from parser import parse_amazon_data
 
 def convert_to_csv(input_file, output_dir):
     os.makedirs(output_dir, exist_ok=True)
