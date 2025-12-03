@@ -1,10 +1,67 @@
+"""
+Spark + Neo4j Single-Node Benchmark
+====================================
+
+This script benchmarks Apache Spark queries against a single Neo4j instance.
+It measures query performance for various operation types and reports statistics.
+
+PURPOSE:
+--------
+Unlike the cluster benchmark, this script tests a single Neo4j server setup,
+which is the common configuration for development and smaller deployments.
+
+BENCHMARK METHODOLOGY:
+----------------------
+Each query is run 3 times to get:
+- Average time: Typical performance
+- Min time: Best-case (likely cached)
+- Max time: Worst-case
+- Count: Number of results (for verification)
+
+This approach accounts for:
+1. Cold start effects (first query slower)
+2. Caching benefits (subsequent queries faster)
+3. System variability
+
+QUERIES TESTED:
+---------------
+1. Load Products: Basic node loading
+2. Filter High-Rated: Spark filtering on DataFrame
+3. Top Products: Sorting and limiting
+4. Category Analysis: Neo4j aggregation via Cypher
+5. Load Relationships: Loading edges between nodes
+6. Customer Reviews: Complex filtered aggregation
+7. Similarity Network: Graph traversal patterns
+
+DEPENDENCIES:
+- pyspark: Apache Spark Python API
+- neo4j-connector-apache-spark: Spark connector
+"""
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, count, avg, desc
 import time
 import json
 from datetime import datetime
 
+
 def create_spark_session():
+    """
+    Create a Spark session configured for single-node Neo4j.
+    
+    This configuration connects to a standalone Neo4j instance
+    (not a cluster) using the Bolt protocol directly.
+    
+    CONFIGURATION:
+    - bolt://localhost:7687: Direct connection to single server
+    - local[*]: Use all local CPU cores for Spark processing
+    - spark.jars.packages: Auto-download Neo4j connector from Maven
+    
+    Returns:
+    --------
+    SparkSession
+        Configured Spark session ready for Neo4j queries
+    """
     return SparkSession.builder \
         .appName("Neo4j-Spark-Single-Node-Benchmark") \
         .config("spark.jars.packages", "org.neo4j:neo4j-connector-apache-spark_2.13:5.3.1_for_spark_3") \
@@ -15,24 +72,43 @@ def create_spark_session():
         .master("local[*]") \
         .getOrCreate()
 
+
 def benchmark_spark_queries(spark):
+    """
+    Run comprehensive benchmark suite testing various query patterns.
+    
+    Each query is executed 3 times to gather statistics.
+    Results include timing (avg/min/max) and result counts.
+    
+    Parameters:
+    -----------
+    spark : SparkSession
+        Active Spark session with Neo4j configuration
+    
+    Returns:
+    --------
+    dict
+        Dictionary mapping query names to performance statistics
+    """
     results = {}
     
     
-    
-    # Query 1: Load Products and analyze
+    # ================================================
+    # QUERY 1: Load Products
+    # ================================================
+    # Baseline test: Load all Product nodes from Neo4j into Spark
+    # This tests raw data transfer performance
     
     times = []
-    for i in range(3):
+    for i in range(3):  # Run 3 times for statistics
         start = time.time()
         products_df = spark.read.format("org.neo4j.spark.DataSource") \
             .option("labels", "Product") \
             .load()
-        count = products_df.count()
+        count = products_df.count()  # Forces execution
         elapsed = time.time() - start
         times.append(elapsed)
         
-    
     avg_time = sum(times) / len(times)
     results['Load Products'] = {
         'avg': round(avg_time, 3),
@@ -42,7 +118,11 @@ def benchmark_spark_queries(spark):
     }
     
     
-    # Query 2: Filter high-rated products using Spark
+    # ================================================
+    # QUERY 2: Filter High-Rated Products
+    # ================================================
+    # Tests Spark's DataFrame filtering capabilities
+    # Data is loaded from Neo4j, then filtered in Spark
     
     times = []
     for i in range(3):
@@ -54,7 +134,6 @@ def benchmark_spark_queries(spark):
         elapsed = time.time() - start
         times.append(elapsed)
         
-    
     avg_time = sum(times) / len(times)
     results['Filter High-Rated'] = {
         'avg': round(avg_time, 3),
@@ -64,7 +143,10 @@ def benchmark_spark_queries(spark):
     }
     
     
-    # Query 3: Top products by reviews using Spark
+    # ================================================
+    # QUERY 3: Top Products by Reviews
+    # ================================================
+    # Tests sorting and limiting operations in Spark
     
     times = []
     for i in range(3):
@@ -77,7 +159,6 @@ def benchmark_spark_queries(spark):
         elapsed = time.time() - start
         times.append(elapsed)
         
-    
     avg_time = sum(times) / len(times)
     results['Top Products'] = {
         'avg': round(avg_time, 3),
@@ -87,7 +168,11 @@ def benchmark_spark_queries(spark):
     }
     
     
-    # Query 4: Load and analyze relationships using Cypher in Spark
+    # ================================================
+    # QUERY 4: Category Analysis (Cypher Aggregation)
+    # ================================================
+    # Tests Neo4j's aggregation capabilities via Cypher
+    # The aggregation (count, avg) happens in Neo4j
     
     times = []
     for i in range(3):
@@ -104,7 +189,6 @@ def benchmark_spark_queries(spark):
         elapsed = time.time() - start
         times.append(elapsed)
         
-    
     avg_time = sum(times) / len(times)
     results['Category Analysis'] = {
         'avg': round(avg_time, 3),
@@ -114,7 +198,11 @@ def benchmark_spark_queries(spark):
     }
     
     
-    # Query 5: Load relationships
+    # ================================================
+    # QUERY 5: Load Relationships
+    # ================================================
+    # Tests loading graph edges (relationships) into Spark
+    # Uses special relationship loading syntax
     
     times = []
     for i in range(3):
@@ -128,7 +216,6 @@ def benchmark_spark_queries(spark):
         elapsed = time.time() - start
         times.append(elapsed)
         
-    
     avg_time = sum(times) / len(times)
     results['Load Relationships'] = {
         'avg': round(avg_time, 3),
@@ -138,7 +225,11 @@ def benchmark_spark_queries(spark):
     }
     
     
-    # Query 6: Customer review aggregation
+    # ================================================
+    # QUERY 6: Customer Reviews Aggregation
+    # ================================================
+    # Complex query: find top reviewers with high ratings
+    # Tests filtering, aggregation, and sorting in Neo4j
     
     times = []
     for i in range(3):
@@ -156,7 +247,6 @@ def benchmark_spark_queries(spark):
         elapsed = time.time() - start
         times.append(elapsed)
         
-    
     avg_time = sum(times) / len(times)
     results['Customer Reviews'] = {
         'avg': round(avg_time, 3),
@@ -166,7 +256,11 @@ def benchmark_spark_queries(spark):
     }
     
     
-    # Query 7: Complex graph pattern using Spark + Neo4j
+    # ================================================
+    # QUERY 7: Similarity Network (Graph Pattern)
+    # ================================================
+    # Tests graph traversal: find connected similar products
+    # This leverages Neo4j's strength in graph patterns
     
     times = []
     for i in range(3):
@@ -184,7 +278,6 @@ def benchmark_spark_queries(spark):
         elapsed = time.time() - start
         times.append(elapsed)
         
-    
     avg_time = sum(times) / len(times)
     results['Similarity Network'] = {
         'avg': round(avg_time, 3),
@@ -196,10 +289,25 @@ def benchmark_spark_queries(spark):
     
     return results
 
+
 def main():
+    """
+    Main entry point - runs benchmark suite and saves results.
+    
+    WORKFLOW:
+    1. Create Spark session with Neo4j connection
+    2. Run all benchmark queries (3x each)
+    3. Compile results with metadata
+    4. Save to JSON file for analysis
+    """
+    # Initialize Spark
     spark = create_spark_session()
-    spark.sparkContext.setLogLevel("WARN")
+    spark.sparkContext.setLogLevel("WARN")  # Reduce logging noise
+    
+    # Run benchmarks
     results = benchmark_spark_queries(spark)
+    
+    # Compile output with metadata
     output = {
         'timestamp': datetime.now().isoformat(),
         'architecture': 'single-node',
@@ -208,9 +316,14 @@ def main():
         'connector_version': '5.3.0',
         'benchmarks': results
     }
+    
+    # Save results to file
     with open('spark_neo4j_single_benchmark.json', 'w') as f:
         json.dump(output, f, indent=2)
+    
+    # Clean up
     spark.stop()
+
 
 if __name__ == "__main__":
     main()
